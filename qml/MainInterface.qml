@@ -1,17 +1,142 @@
 import QtQuick 2.0
-
+import QtQuick.Window 2.0
 Rectangle{
     id: vMainIterface;
     color: "transparent";
+    /**顶栏*************************************************************************
+      */
+    Rectangle{
+        id: topHurdle;
+        color: "transparent";
+        width: parent.width;
+        height: 86;
+        anchors.top: parent.top;
+
+        Image {
+            id: topBaskground;
+            source: "image/topHurdle.png";
+            anchors.fill: parent;
+        }
+
+        Text {
+            id: title1
+            text: qsTr("交互几何重构")
+            anchors.centerIn: parent;
+            anchors.topMargin: 18;
+
+
+            font.family: "simplex";
+            font.pixelSize: 30;
+            color: "#ffffff";
+            font.bold: true;
+        }
+
+        Row{
+            id: titleButtonRow;
+
+            anchors.right: parent.right;
+            anchors.rightMargin: 41;
+            anchors.top: parent.top;
+            anchors.topMargin: 26;
+            height: 30;
+
+            spacing: 15;
+
+            Button{
+                id: min;
+                width: 30;
+                height: 30;
+                backgroundImag: "image/pattern1/最小化.png"
+                nIndex: 0;
+            }
+            Button{
+                id: max;
+                width: 30;
+                height: 30;
+                backgroundImag: "image/pattern1/放大-半屏.png"
+                nIndex: 1;
+            }
+            Button{
+                id: exit;
+                width: 30;
+                height: 30;
+                backgroundImag: "image/pattern1/关闭.png"
+                nIndex: 2;
+            }
+        }
+
+        MouseArea
+        {
+            anchors.right: parent.right;
+            anchors.rightMargin: 120;
+
+            height: parent.height;
+            width: parent.width - 120;
+
+
+            acceptedButtons: Qt.LeftButton //只处理鼠标左键
+            property point clickPos: "0,0"
+            onPressed:
+            {
+                //接收鼠标按下事件
+                clickPos  = Qt.point(mouse.x,mouse.y)
+            }
+            onPositionChanged:
+            {
+                //鼠标按下后改变位置
+                //鼠标偏移量
+                var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+
+                //如果mainwindow继承自QWidget,用setPos
+                main_W.setX(main_W.x+delta.x)
+                main_W.setY(main_W.y+delta.y)
+            }
+
+            onDoubleClicked:
+            {
+                main_W.visibility === Window.Windowed ?
+                main_W.visibility = Window.Maximized :main_W.visibility = Window.Windowed;
+            }
+
+
+        }
+    }
+
+    /** 底*************************************************************************
+      */
+    Rectangle{
+        width: parent.width;
+        height: 932;
+        anchors.top: parent.top;
+        anchors.topMargin: 148;
+
+        Image {
+            id: vMainBack;
+            source: "image/pattern1/底.png";
+            anchors.fill: parent;
+        }
+        Image {
+            id: vMainBack2;
+            source: "image/pattern1/矩形 482.png";
+            width: 1810;
+            height: 807;
+            anchors.top: parent.top;
+            anchors.topMargin: 16;
+            anchors.left: parent.left;
+            anchors.leftMargin: 83;
+        }
+    }
+
 /**
   菜单栏****************************************************************************
   */
     Rectangle{
         id: menubar;
-        color: "transparent"             //"#d6d6d7";
-        width: 1920;
-        height: 30;
+        color: "#000000"             //"#d6d6d7";
+        width: parent.width;
+        height: 62;
         anchors.top: parent.top;
+        anchors.topMargin: 86;
 
         Row{
             id: menubarButton;
@@ -19,36 +144,40 @@ Rectangle{
             width: parent.width;
             height: parent.height;
 
-            spacing: 10;
+            spacing: 1;
             anchors.left: parent.left;
             anchors.top: parent.top;
 
-            Button{
+            BarButton{
                 id: file;
 
-                width: 80;
+                width: 350;
                 height: parent.height;
-                sPressedImage: "image/ButtonOn.png";
-                sNormalImage: "image/Button.png";
-                sHoverImage: "image/Button.png";
-                sTextText: "文件";
-                nTextSize: 17;
-                state: "nomal"
+                backgroundImage: "image/pattern1/1文件栏.png";
+                foregroundImageLeft: "image/pattern1/矩形 474.png";
+                foregroundImageRight: "image/pattern1/文件-1.png"
+                txt: "文件";
             }
 
-            Button{
+            BarButton{
                 id: help;
 
-                width: 80;
+                width: 350;
                 height: parent.height;
-                sPressedImage: "image/ButtonOn.png";
-                sNormalImage: "image/Button.png";
-                sHoverImage: "image/Button.png";
-                sTextText: "帮助";
-                nTextSize: 17;
-                state: "nomal"
+                backgroundImage: "image/pattern1/2帮助栏.png";
+                foregroundImageLeft: "image/pattern1/矩形 475.png";
+                foregroundImageRight: "image/pattern1/帮助-1.png"
+                txt: "帮助";
             }
 
+        }
+
+        Image {
+            id: velse
+            source: "image/pattern1/3其他栏.png";
+            anchors.left: parent.left;
+            anchors.leftMargin: 702;
+            anchors.top: parent.top;
         }
     }
 /**
@@ -56,12 +185,13 @@ Rectangle{
   */
     Rectangle{
         id: vPattern;
-        color: "transparent";
-        width: 60;
-        height: 1000;
+        color: "black";
+        width: 80;
+        height: 807;
         anchors.left: parent.left;
+        anchors.leftMargin: 21;
         anchors.top: parent.top;
-        anchors.topMargin: 60;
+        anchors.topMargin: 164;
 
         Column{
             id: vPatternButton;
@@ -74,27 +204,26 @@ Rectangle{
                 id: pattern1;
 
                 width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "模\n式\n1";
-                nTextSize: 17;
-                state: "nomal"
+                height: 200;
+                backgroundImag: "image/pattern1/模式1.png";
+                txt: "几\n何\n重\n构";
             }
 
             Button{
                 id: pattern2;
 
                 width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "模\n式\n2";
-                nTextSize: 17;
-                state: "nomal"
+                height: 200;
+                backgroundImag: "image/pattern1/模式2.png";
+                txt: "语\n义\n重\n构";
             }
+        }
+
+        Image {
+            id: vPatternelse;
+            source: "image/pattern1/其他模式.png";
+            anchors.top: parent.top;
+            anchors.topMargin: 397;
         }
     }
 
@@ -104,106 +233,157 @@ Rectangle{
     Rectangle{
         id: vGraphic;
         color: "transparent";
-        width: 60;
-        height: 1000;
+        width: 170;
+        height: 400;
         anchors.left: parent.left;
-        anchors.leftMargin: 100;
+        anchors.leftMargin: 162;
         anchors.top: parent.top;
-        anchors.topMargin: 60;
+        anchors.topMargin: 236;
 
         Column{
             id: vGraphicButton;
             width: parent.width;
             height: parent.height;
-            spacing: 0;
+            spacing: 40;
             anchors.top: parent.top;
 
-            Button{
+            IslamicButton{
                 id: graphic1;
 
                 width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "Islamic star";
-                nTextSize: 17;
-                state: "nomal"
+                height: 190;
+                backgroundImage: "image/pattern1/Islanmic star.png";
+                txt:"islamic star";
+
             }
 
-            Button{
+            IslamicButton{
                 id: graphic2;
 
                 width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "Islamic rosette";
-                nTextSize: 17;
-                state: "nomal"
+                height: 190;
+                backgroundImage: "image/pattern1/Islanmic rosette-1.png";
+                txt:"islamic rosette";
             }
         }
     }
+    /**生成结果显示**********************************************************************/
+    Rectangle{
+        id: imageShow;
+        color: "transparent";
 
-    /**
-      重构按钮****************************************************************************
-      */
+        width: 976;
+        height: 565;
+        anchors.left: parent.left;
+        anchors.leftMargin: 474;
+        anchors.top: parent.top;
+        anchors.topMargin: 236;
+
+        Image {
+            id: imageGenerate;
+            source: "image/pattern1/Islanmic rosette.png";   //应设置为变量
+            anchors.fill: parent;
+        }
+    }
 
     Rectangle{
-        id: vReconstruct;
+        id: reButton;
         color: "transparent";
-        width: 60;
-        height: 1000;
-        anchors.right: parent.right;
-        anchors.rightMargin: 10;
+        width: 140;
+        height: 400;
+        anchors.left: parent.left;
+        anchors.leftMargin: 1752;
         anchors.top: parent.top;
-        anchors.topMargin: 60;
+        anchors.topMargin: 228;
 
         Column{
-            id: vReconstructButton;
+            id: reButtonc;
             width: parent.width;
             height: parent.height;
             spacing: 0;
             anchors.top: parent.top;
 
             Button{
-                id: reconstruct1;
-
-                width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "重构按钮";
-                nTextSize: 17;
-                state: "nomal"
+                id: reButton1;
+                width: 140;
+                height: 98;
+                backgroundImag: "image/pattern1/重构按钮1.png";
+                txt: "重构按钮1";
             }
-
             Button{
-                id: reconstruct2;
-
-                width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "重构按钮";
-                nTextSize: 17;
-                state: "nomal"
+                id: reButton2;
+                width: 140;
+                height: 98;
+                backgroundImag: "image/pattern1/重构按钮2.png";
+                txt: "重构按钮2";
             }
-
             Button{
-                id: reconstruct3;
+                id: reButton3;
+                width: 140;
+                height: 98;
+                backgroundImag: "image/pattern1/重构按钮3.png";
+                txt: "重构按钮3";
+            }
+            Button{
+                id: reButton4;
+                width: 140;
+                height: 98;
+                backgroundImag: "image/pattern1/重构按钮4.png";
+                txt: "重构按钮4";
+            }
+        }
+    }
 
-                width: parent.width;
-                height: 150;
-                sPressedImage: "";
-                sNormalImage: "";
-                sHoverImage: "";
-                sTextText: "重构按钮";
-                nTextSize: 17;
-                state: "nomal"
+    /**
+      工具按钮****************************************************************************
+      */
+    Rectangle{
+        id: toolbutton;
+        color: "transparent";
+        width: 319;
+        height: 37;
+        anchors.left: parent.left;
+        anchors.leftMargin: 803;
+        anchors.top: parent.top;
+        anchors.topMargin: 852;
+
+        Row{
+            id:toolbuttonr;
+            width: parent.width;
+            height: parent.height;
+            anchors.left: parent.left;
+
+            spacing: 10;
+
+            ToolButton{
+                id:tool1;
+                width: 36;
+                height: 36;
+                backgroundImage: "image/pattern1/保存.png";
+            }
+            ToolButton{
+                id:tool2;
+                width: 36;
+                height: 36;
+                backgroundImage: "image/pattern1/放大.png";
+            }
+            ToolButton{
+                id:tool3;
+                width: 36;
+                height: 36;
+                backgroundImage: "image/pattern1/缩小.png";
+            }
+            ToolButton{
+                id:tool4;
+                width: 36;
+                height: 36;
+                backgroundImage: "image/pattern1/重置.png";
+            }
+            ToolButton{
+                id:tool5;
+                width: 36;
+                height: 36;
+                backgroundImage: "image/pattern1/关闭.png";
             }
         }
     }

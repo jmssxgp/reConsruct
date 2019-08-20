@@ -1,6 +1,31 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/image/Button.png</file>
-        <file>qml/image/ButtonOn.png</file>
+        <file>qml/image/topHurdle.png</file>
+        <file>qml/image/pattern1/1文件栏.png</file>
+        <file>qml/image/pattern1/2帮助栏.png</file>
+        <file>qml/image/pattern1/帮助-1.png</file>
+        <file>qml/image/pattern1/矩形 474.png</file>
+        <file>qml/image/pattern1/矩形 475.png</file>
+        <file>qml/image/pattern1/文件-1.png</file>
+        <file>qml/image/pattern1/3其他栏.png</file>
+        <file>qml/image/pattern1/模式1.png</file>
+        <file>qml/image/pattern1/模式2.png</file>
+        <file>qml/image/pattern1/底.png</file>
+        <file>qml/image/pattern1/其他模式.png</file>
+        <file>qml/image/pattern1/Islanmic rosette.png</file>
+        <file>qml/image/pattern1/Islanmic rosette-1.png</file>
+        <file>qml/image/pattern1/Islanmic star.png</file>
+        <file>qml/image/pattern1/矩形 482.png</file>
+        <file>qml/image/pattern1/重构按钮1.png</file>
+        <file>qml/image/pattern1/重构按钮2.png</file>
+        <file>qml/image/pattern1/重构按钮3.png</file>
+        <file>qml/image/pattern1/重构按钮4.png</file>
+        <file>qml/image/pattern1/放大-半屏.png</file>
+        <file>qml/image/pattern1/关闭.png</file>
+        <file>qml/image/pattern1/最小化.png</file>
+        <file>qml/image/pattern1/保存.png</file>
+        <file>qml/image/pattern1/放大.png</file>
+        <file>qml/image/pattern1/缩小.png</file>
+        <file>qml/image/pattern1/重置.png</file>
     </qresource>
 </RCC>

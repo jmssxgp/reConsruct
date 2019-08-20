@@ -4,5 +4,8 @@
         <file>qml/SecondInterface.qml</file>
         <file>qml/MainInterface.qml</file>
         <file>qml/Button.qml</file>
+        <file>qml/BarButton.qml</file>
+        <file>qml/IslamicButton.qml</file>
+        <file>qml/ToolButton.qml</file>
     </qresource>
 </RCC>

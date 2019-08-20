@@ -1,98 +1,116 @@
 import QtQuick 2.0
-
+import QtQuick.Window 2.0
 Rectangle{
     id: vButton;
 
-    color: "transparent";
+    color: "#000000";
 
     //------------------------------------------------------------//
 
-    property var sPressedImage: "";
+    property var backgroundImag: "";
     property var sNormalImage: "";
+    property var sPressedImage: "";
     property var sHoverImage: "";
-    property var sTextText: "";
-    property var nTextSize: 12;
-
+    property var txt: "";
     property var nIndex: 0;
 
-    //定义一个信号，这个信号用于返回某些参数
     signal back(var nIndex);
-
 
     Image {
         id: vButtonImage;
 
         anchors.fill: parent;
-        source: sNormalImage;
+        source: backgroundImag;
     }
 
     Text
     {
         id: vButtonText;
 
-        x: 0;
-        y: 0;
-        width: parent.width;
-        height: parent.height;
-        horizontalAlignment: Text.AlignHCenter;
-        verticalAlignment: Text.AlignVCenter;
-        wrapMode: Text.WordWrap;
-        color: "#000000";/*color: "black";*/
-        font.family: "楷体";
-        font.pixelSize: nTextSize;
-        font.letterSpacing: 1;
-        font.bold: false;
-        text: sTextText;
+        width: 28;
+        height: 112;
+        anchors.top: parent.top;
+        anchors.topMargin: 44;
+        anchors.left: parent.left;
+        anchors.leftMargin: 26;
+        color: "#ffffff";/*color: "black";*/
+        font.family: "simplex";
+        font.pixelSize: 25;
+        font.bold: true;
+        text: txt;
 
     }
 
     MouseArea{
-        id: vbuttonMouse;
+        id: buttonMouse;
         anchors.fill: parent;
-
         acceptedButtons: Qt.LeftButton;
-        hoverEnabled: true;
-        onPressed:
-        {
-            //当前鼠标按钮，将当前按钮的状态设置为按下状态
-            vButton.state === "pressed" ? vButton.state = "hover" : vButton.state = "pressed";
-        }
+
         onReleased:
         {
-            //鼠标按下释放掉了，返回一个信号，告诉我的上层父亲，我被按下了，需要执行相应操作
+            vButton.state = "normal";
             back(nIndex);
         }
-
-        onEntered:
-        {
-            if(vButton.state === "normal")
+        onClicked: {
+            if(nIndex===0){
+                main_W.visibility =Window.Minimized;
+            }
+            if(nIndex === 1)
             {
-                vButton.state = "hover";
+                main_W.visibility === Window.Windowed ?
+                            main_W.visibility = Window.Maximized :main_W.visibility = Window.Windowed;
+
             }
 
-            /* state === "normal" ? state = "hover" : state = "pressed"; */
-        }
-        onExited:
-        {
-            if(vButton.state === "hover")
-            {
-                vButton.state = "normal";
-            }
-
-            /* state === "hover" ? state = "normal" : state = "pressed"; */
+            if(nIndex === 2)
+                Qt.quit();
         }
     }
 
+//    MouseArea{
+//        id: vbuttonMouse;
+//        anchors.fill: parent;
+
+//        acceptedButtons: Qt.LeftButton;
+//        hoverEnabled: true;
+//        onPressed:
+//        {
+//            //当前鼠标按钮，将当前按钮的状态设置为按下状态
+//            vButton.state === "pressed" ? vButton.state = "hover" : vButton.state = "pressed";
+//        }
+//        onReleased:
+//        {
+//            //鼠标按下释放掉了，返回一个信号，告诉我的上层父亲，我被按下了，需要执行相应操作
+//            back(nIndex);
+//        }
+
+//        onEntered:
+//        {
+//            if(vButton.state === "normal")
+//            {
+//                vButton.state = "hover";
+//            }
+
+//            /* state === "normal" ? state = "hover" : state = "pressed"; */
+//        }
+//        onExited:
+//        {
+//            if(vButton.state === "hover")
+//            {
+//                vButton.state = "normal";
+//            }
+
+//            /* state === "hover" ? state = "normal" : state = "pressed"; */
+//        }
+//    }
     states: [
         State
         {
             name: "normal";
             PropertyChanges
             {
-                //表示当该button的state变为normal时，target指目标即vButtonImage这个ID的对象，
-                //他的source属性将赋值为sNormalImage；同比类推下面的
-                target: vButtonImage;
-                source: sNormalImage;
+                //target: titleButtonImage;
+                //source: sNormalImage;
             }
         },
         State
@@ -100,8 +118,8 @@ Rectangle{
             name: "pressed";
             PropertyChanges
             {
-                target: vButtonImage;
-                source: sPressedImage;
+                //target: titleButtonImage;
+                //source: sPressedImage;
             }
         },
         State
@@ -109,9 +127,10 @@ Rectangle{
             name: "hover";
             PropertyChanges
             {
-                target: vButtonImage;
-                source: sHoverImage;
+                //target: titleButtonImage;
+                //source: sHoverImage;
             }
         }
     ]
+
 }
