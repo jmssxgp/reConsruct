@@ -24,8 +24,17 @@
         <file>qml/image/pattern1/关闭.png</file>
         <file>qml/image/pattern1/最小化.png</file>
         <file>qml/image/pattern1/保存.png</file>
-        <file>qml/image/pattern1/放大.png</file>
         <file>qml/image/pattern1/缩小.png</file>
         <file>qml/image/pattern1/重置.png</file>
+        <file>qml/image/islamic star/G输入框.png</file>
+        <file>qml/image/islamic star/K输入框.png</file>
+        <file>qml/image/islamic star/N输入框.png</file>
+        <file>qml/image/islamic star/X输入框.png</file>
+        <file>qml/image/islamic star/Y输入框.png</file>
+        <file>qml/image/islamic star/矩形 466.png</file>
+        <file>qml/image/islamic star/矩形 469.png</file>
+        <file>qml/image/islamic star/确认.png</file>
+        <file>qml/image/pattern1/放大.png</file>
+        <file>qml/image/pattern1/状态栏.png</file>
     </qresource>
 </RCC>

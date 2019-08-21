@@ -98,8 +98,12 @@ debug/qrc_qml.cpp: qml.qrc \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/bin/rcc.exe \
 		qml/MainInterface.qml \
 		qml/Button.qml \
+		qml/SubWin2.qml \
+		qml/ParamInput.qml \
 		qml/IslamicButton.qml \
+		qml/SubWin1.qml \
 		qml/SecondInterface.qml \
+		qml/ConfirmButton.qml \
 		qml/BarButton.qml \
 		qml/ToolButton.qml \
 		qml/main.qml

@@ -12,5 +12,4 @@ Rectangle{
 //        anchors.topMargin: 100;
 //        But
 //    }
-
 }

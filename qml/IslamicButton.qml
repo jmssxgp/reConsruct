@@ -6,6 +6,7 @@ Rectangle{
 
     property var backgroundImage: "";
     property var txt: "";
+    property var cIndex: 0;
 
     Image {
         id: background;
@@ -22,5 +23,17 @@ Rectangle{
         color: "#ffffff";
         anchors.bottom: parent.bottom;
         anchors.horizontalCenter: parent.horizontalCenter;
+    }
+
+    MouseArea{
+        anchors.fill: parent;
+        onClicked: {
+            if(cIndex===0&&subWindow1.visible===false&&subWindow2.visible===false){
+                subWindow1.visible=true;
+            }
+            if(cIndex===1&&subWindow2.visible===false&&subWindow1.visible===false){
+                subWindow2.visible=true;
+            }
+        }
     }
 }

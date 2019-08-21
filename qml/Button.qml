@@ -3,7 +3,7 @@ import QtQuick.Window 2.0
 Rectangle{
     id: vButton;
 
-    color: "#000000";
+    color: "transparent";
 
     //------------------------------------------------------------//
 
@@ -33,7 +33,7 @@ Rectangle{
         anchors.topMargin: 44;
         anchors.left: parent.left;
         anchors.leftMargin: 26;
-        color: "#ffffff";/*color: "black";*/
+        color: "#ffffff";/*color: "white";*/
         font.family: "simplex";
         font.pixelSize: 25;
         font.bold: true;

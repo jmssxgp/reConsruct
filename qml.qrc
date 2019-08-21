@@ -7,5 +7,10 @@
         <file>qml/BarButton.qml</file>
         <file>qml/IslamicButton.qml</file>
         <file>qml/ToolButton.qml</file>
+        <file>qml/SubWin1.qml</file>
+        <file>qml/ParamInput.qml</file>
+        <file>qml/ConfirmButton.qml</file>
+        <file>qml/SubWin2.qml</file>
+        <file>qml/StatusBar.qml</file>
     </qresource>
 </RCC>

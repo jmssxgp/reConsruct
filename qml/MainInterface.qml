@@ -45,7 +45,8 @@ Rectangle{
             Button{
                 id: min;
                 width: 30;
-                height: 30;
+                height: 3;
+                anchors.verticalCenter: parent.verticalCenter;
                 backgroundImag: "image/pattern1/最小化.png"
                 nIndex: 0;
             }
@@ -254,6 +255,7 @@ Rectangle{
                 height: 190;
                 backgroundImage: "image/pattern1/Islanmic star.png";
                 txt:"islamic star";
+                cIndex: 0;
 
             }
 
@@ -264,6 +266,7 @@ Rectangle{
                 height: 190;
                 backgroundImage: "image/pattern1/Islanmic rosette-1.png";
                 txt:"islamic rosette";
+                cIndex: 1;
             }
         }
     }
@@ -353,7 +356,7 @@ Rectangle{
             height: parent.height;
             anchors.left: parent.left;
 
-            spacing: 10;
+            spacing: 25;
 
             ToolButton{
                 id:tool1;
@@ -381,10 +384,24 @@ Rectangle{
             }
             ToolButton{
                 id:tool5;
-                width: 36;
-                height: 36;
+                width: 30;
+                height: 30;
+                anchors.verticalCenter: parent.verticalCenter;
                 backgroundImage: "image/pattern1/关闭.png";
             }
         }
+    }
+
+    /*********************状态栏******************************************/
+    StatusBar{
+        width: 1869;
+        height: 50;
+        anchors.left: parent.left;
+        anchors.leftMargin: 21;
+        anchors.top: parent.top;
+        anchors.topMargin: 990;
+
+        txt:"就绪";
+        backgroundImg: "image/pattern1/状态栏.png";
     }
 }
