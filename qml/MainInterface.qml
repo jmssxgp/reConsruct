@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 Rectangle{
-    id: vMainIterface;
+    id: vMain;
     color: "transparent";
     /**顶栏*************************************************************************
       */
@@ -61,7 +61,7 @@ Rectangle{
                 id: exit;
                 width: 30;
                 height: 30;
-                backgroundImag: "image/pattern1/关闭.png"
+                backgroundImag: "image/pattern1/关闭-1.png"
                 nIndex: 2;
             }
         }
@@ -206,8 +206,14 @@ Rectangle{
 
                 width: parent.width;
                 height: 200;
+                nIndex: 3;
                 backgroundImag: "image/pattern1/模式1.png";
+                sHoverImage: "image/pattern1/模式2.png"
                 txt: "几\n何\n重\n构";
+                state: "normal";
+                onSelcect: {
+                    main_W.selectInterface(0);
+                }
             }
 
             Button{
@@ -215,8 +221,14 @@ Rectangle{
 
                 width: parent.width;
                 height: 200;
+                nIndex: 4;
                 backgroundImag: "image/pattern1/模式2.png";
+                sHoverImage: "image/pattern2/模式2.png"
                 txt: "语\n义\n重\n构";
+                state: "normal";
+                onSelcect: {
+                    main_W.selectInterface(1);
+                }
             }
         }
 
@@ -344,7 +356,7 @@ Rectangle{
         id: toolbutton;
         color: "transparent";
         width: 319;
-        height: 37;
+        height: 36;
         anchors.left: parent.left;
         anchors.leftMargin: 803;
         anchors.top: parent.top;
@@ -362,32 +374,47 @@ Rectangle{
                 id:tool1;
                 width: 36;
                 height: 36;
-                backgroundImage: "image/pattern1/保存.png";
+                backgroundImage: "image/pattern1/保存-未选中.png";
+                pressedImage: "image/pattern1/保存-移至icon.png";
+                hoverImage: "image/pattern1/保存-移至icon.png";
+                state: "normal";
             }
             ToolButton{
                 id:tool2;
                 width: 36;
                 height: 36;
-                backgroundImage: "image/pattern1/放大.png";
+                backgroundImage: "image/pattern1/放大-未选中.png";
+                pressedImage: "image/pattern1/放大-移至icon.png";
+                hoverImage: "image/pattern1/放大-移至icon.png";
+                state: "normal";
             }
             ToolButton{
                 id:tool3;
                 width: 36;
                 height: 36;
-                backgroundImage: "image/pattern1/缩小.png";
+                backgroundImage: "image/pattern1/缩小-未选中.png";
+                pressedImage: "image/pattern1/缩小-移至icon.png"
+                hoverImage: "image/pattern1/缩小-移至icon.png";
+                state: "normal";
             }
             ToolButton{
                 id:tool4;
                 width: 36;
                 height: 36;
-                backgroundImage: "image/pattern1/重置.png";
+                backgroundImage: "image/pattern1/重置-未选中.png";
+                pressedImage: "image/pattern1/重置-移至icon.png";
+                hoverImage: "image/pattern1/重置-移至icon.png";
+                state: "normal";
             }
             ToolButton{
                 id:tool5;
                 width: 30;
                 height: 30;
                 anchors.verticalCenter: parent.verticalCenter;
-                backgroundImage: "image/pattern1/关闭.png";
+                backgroundImage: "image/pattern1/关闭-未选中.png";
+                pressedImage: "image/pattern1/关闭-移至icon.png";
+                hoverImage: "image/pattern1/关闭-移至icon.png";
+                state: "normal";
             }
         }
     }
@@ -404,4 +431,5 @@ Rectangle{
         txt:"就绪";
         backgroundImg: "image/pattern1/状态栏.png";
     }
+
 }

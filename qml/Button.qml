@@ -8,13 +8,14 @@ Rectangle{
     //------------------------------------------------------------//
 
     property var backgroundImag: "";
-    property var sNormalImage: "";
-    property var sPressedImage: "";
+
     property var sHoverImage: "";
     property var txt: "";
     property var nIndex: 0;
+    property var selcetIn: 0;
 
     signal back(var nIndex);
+    signal selcect(var selcetIn);
 
     Image {
         id: vButtonImage;
@@ -49,7 +50,19 @@ Rectangle{
         onReleased:
         {
             vButton.state = "normal";
-            back(nIndex);
+            selcect(selcetIn);
+        }
+        onEntered:
+        {
+            vButton.state = "hover";
+            /* state === "normal" ? state = "hover" : state = "pressed"; */
+        }
+        onExited:
+        {
+            if(vButton.state === "hover")
+            {
+                vButton.state = "normal";
+            }
         }
         onClicked: {
             if(nIndex===0){
@@ -64,62 +77,23 @@ Rectangle{
 
             if(nIndex === 2)
                 Qt.quit();
+            if(nIndex === 3){
+                selcetIn = 0;
+            }
+            if(nIndex === 4){
+                selcetIn = 1;
+            }
         }
     }
 
-//    MouseArea{
-//        id: vbuttonMouse;
-//        anchors.fill: parent;
-
-//        acceptedButtons: Qt.LeftButton;
-//        hoverEnabled: true;
-//        onPressed:
-//        {
-//            //当前鼠标按钮，将当前按钮的状态设置为按下状态
-//            vButton.state === "pressed" ? vButton.state = "hover" : vButton.state = "pressed";
-//        }
-//        onReleased:
-//        {
-//            //鼠标按下释放掉了，返回一个信号，告诉我的上层父亲，我被按下了，需要执行相应操作
-//            back(nIndex);
-//        }
-
-//        onEntered:
-//        {
-//            if(vButton.state === "normal")
-//            {
-//                vButton.state = "hover";
-//            }
-
-//            /* state === "normal" ? state = "hover" : state = "pressed"; */
-//        }
-//        onExited:
-//        {
-//            if(vButton.state === "hover")
-//            {
-//                vButton.state = "normal";
-//            }
-
-//            /* state === "hover" ? state = "normal" : state = "pressed"; */
-//        }
-//    }
     states: [
         State
         {
             name: "normal";
             PropertyChanges
             {
-                //target: titleButtonImage;
-                //source: sNormalImage;
-            }
-        },
-        State
-        {
-            name: "pressed";
-            PropertyChanges
-            {
-                //target: titleButtonImage;
-                //source: sPressedImage;
+                target: vButtonImage;
+                source: backgroundImag;
             }
         },
         State
@@ -127,8 +101,8 @@ Rectangle{
             name: "hover";
             PropertyChanges
             {
-                //target: titleButtonImage;
-                //source: sHoverImage;
+                target: vButtonImage;
+                source: sHoverImage;
             }
         }
     ]

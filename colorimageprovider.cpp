@@ -29,6 +29,6 @@ public:
         }
         return pixmap;
     }
-}
+};
 
 

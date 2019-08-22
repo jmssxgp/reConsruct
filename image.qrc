@@ -21,11 +21,7 @@
         <file>qml/image/pattern1/重构按钮3.png</file>
         <file>qml/image/pattern1/重构按钮4.png</file>
         <file>qml/image/pattern1/放大-半屏.png</file>
-        <file>qml/image/pattern1/关闭.png</file>
         <file>qml/image/pattern1/最小化.png</file>
-        <file>qml/image/pattern1/保存.png</file>
-        <file>qml/image/pattern1/缩小.png</file>
-        <file>qml/image/pattern1/重置.png</file>
         <file>qml/image/islamic star/G输入框.png</file>
         <file>qml/image/islamic star/K输入框.png</file>
         <file>qml/image/islamic star/N输入框.png</file>
@@ -34,7 +30,25 @@
         <file>qml/image/islamic star/矩形 466.png</file>
         <file>qml/image/islamic star/矩形 469.png</file>
         <file>qml/image/islamic star/确认.png</file>
-        <file>qml/image/pattern1/放大.png</file>
         <file>qml/image/pattern1/状态栏.png</file>
+        <file>qml/image/pattern1/保存-移至icon.png</file>
+        <file>qml/image/pattern1/放大-移至icon.png</file>
+        <file>qml/image/pattern1/关闭-移至icon.png</file>
+        <file>qml/image/pattern1/缩小-移至icon.png</file>
+        <file>qml/image/pattern1/重置-移至icon.png</file>
+        <file>qml/image/pattern1/关闭-1.png</file>
+        <file>qml/image/pattern1/保存-未选中.png</file>
+        <file>qml/image/pattern1/放大-未选中.png</file>
+        <file>qml/image/pattern1/关闭-未选中.png</file>
+        <file>qml/image/pattern1/缩小-未选中.png</file>
+        <file>qml/image/pattern1/重置-未选中.png</file>
+        <file>qml/image/pattern2/模式1.png</file>
+        <file>qml/image/pattern2/模式2.png</file>
+        <file>qml/image/pattern2/背景.png</file>
+        <file>qml/image/pattern2/纹理树.png</file>
+        <file>qml/image/pattern2/矩形 489.png</file>
+        <file>qml/image/pattern2/生成图.png</file>
+        <file>qml/image/pattern2/纹理树-2.png</file>
+        <file>qml/image/pattern2/纹理选框.png</file>
     </qresource>
 </RCC>

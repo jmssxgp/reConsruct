@@ -7,14 +7,36 @@ Window {
 
     visible: true;
 
-    flags: Qt.CursorShape |  Qt.WindowSystemMenuHint |Qt.FramelessWindowHint |  Qt.WindowMinimizeButtonHint | Qt.Window;
+    flags: Qt.CursorShape |  Qt.WindowSystemMenuHint |Qt.FramelessWindowHint | Qt.Window;
     width: 1920;
     height: 1080;
     title: qsTr("交互重构");
+    function selectInterface(selectIn)
+    {
+        vMain.visible = false;
+        vSecond.visible = false;
+        switch (selectIn){
+        case 0 :
+            vMain.visible = true;
+            break;
+        case 1 :
+            vSecond.visible = true;
+            break
+        }
+    }
+
     MainInterface{
+        id: vMain
         anchors.fill: parent;
 
         visible: true;
+    }
+
+    SecondInterface{
+        id: vSecond
+        anchors.fill: parent;
+
+        visible: false;
     }
 
     Window{
@@ -41,4 +63,6 @@ Window {
             anchors.fill: parent;
         }
     }
+
+
 }
