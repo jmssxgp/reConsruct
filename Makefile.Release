@@ -109,6 +109,7 @@ release/qrc_qml.cpp: qml.qrc \
 		qml/ConfirmButton.qml \
 		qml/StatusBar.qml \
 		qml/BarButton.qml \
+		qml/ImageSelect.qml \
 		qml/ToolButton.qml \
 		qml/main.qml
 	'C:\Qt\Qt5.10.1\5.10.1\mingw53_32\bin\rcc.exe' -name qml qml.qrc -o release/qrc_qml.cpp

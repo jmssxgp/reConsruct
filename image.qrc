@@ -50,5 +50,14 @@
         <file>qml/image/pattern2/生成图.png</file>
         <file>qml/image/pattern2/纹理树-2.png</file>
         <file>qml/image/pattern2/纹理选框.png</file>
+        <file>qml/image/pattern1/保存-点击.png</file>
+        <file>qml/image/pattern1/放大-点击.png</file>
+        <file>qml/image/pattern1/关闭-点击.png</file>
+        <file>qml/image/pattern1/缩小-点击.png</file>
+        <file>qml/image/pattern1/重置-点击.png</file>
+        <file>qml/image/pattern1/关闭-1点击.png</file>
+        <file>qml/image/pattern1/关闭-未选中-1.png</file>
+        <file>qml/image/pattern1/放大-半屏-未选中.png</file>
+        <file>qml/image/pattern1/最小化-未选中.png</file>
     </qresource>
 </RCC>

@@ -40,28 +40,34 @@ Rectangle{
             anchors.topMargin: 26;
             height: 30;
 
-            spacing: 15;
+            spacing: 71;
 
             Button{
                 id: min;
                 width: 30;
                 height: 3;
                 anchors.verticalCenter: parent.verticalCenter;
-                backgroundImag: "image/pattern1/最小化.png"
+                backgroundImag: "image/pattern1/最小化-未选中.png"
+                sHoverImage: "image/pattern1/最小化.png"
+                state: "normal";
                 nIndex: 0;
             }
             Button{
                 id: max;
                 width: 30;
                 height: 30;
-                backgroundImag: "image/pattern1/放大-半屏.png"
+                backgroundImag: "image/pattern1/放大-半屏-未选中.png"
+                sHoverImage: "image/pattern1/放大-半屏.png";
+                state: "normal";
                 nIndex: 1;
             }
             Button{
                 id: exit;
-                width: 30;
-                height: 30;
-                backgroundImag: "image/pattern1/关闭-1.png"
+                width: 24;
+                height: 24;
+                backgroundImag: "image/pattern1/关闭-未选中-1.png"
+                sHoverImage: "image/pattern1/关闭-1.png"
+                state: "normal";
                 nIndex: 2;
             }
         }
@@ -198,7 +204,9 @@ Rectangle{
                 height: 200;
                 nIndex: 3;
                 backgroundImag: "image/pattern2/模式1.png";
+                sHoverImage: "image/pattern1/模式1.png"
                 txt: "几\n何\n重\n构";
+                state: "normal";
 
                 onSelcect: {
                     main_W.selectInterface(0);
@@ -212,8 +220,10 @@ Rectangle{
                 height: 200;
                 nIndex: 4;
                 backgroundImag: "image/pattern2/模式2.png";
+                sHoverImage: "image/pattern2/模式2.png";
                 txt: "语\n义\n重\n构";
 
+                state: "normal";
                 onSelcect: {
                     main_W.selectInterface(1);
                 }
@@ -363,54 +373,67 @@ Rectangle{
             color: "transparent";
             width:328;
             height: 37;
-            anchors.bottom: parent.bottom;
-            anchors.bottomMargin: 83;
+            anchors.top: parent.top;
+            anchors.topMargin: 688;
             anchors.left: parent.left;
             anchors.leftMargin: 806;
 
+            Row{
+                anchors.top: parent.top;
+                anchors.left: parent.left;
+                width: parent.width;
+                height: parent.height;
+                spacing: 37;
 
-//            Row{
-//                id: operaterButton;
-//                width: parent.width;
-//                height: parent.height;
+                ToolButton{
+                    id:tool1;
+                    width: 33;
+                    height: 37;
+                    backgroundImage: "image/pattern1/保存-未选中.png";
+                    pressedImage: "image/pattern1/保存-点击.png";
+                    hoverImage: "image/pattern1/保存-点击.png";
+                    state: "normal";
+                }
+                ToolButton{
+                    id:tool2;
+                    width: 36;
+                    height: 36;
+                    backgroundImage: "image/pattern1/放大-未选中.png";
+                    pressedImage: "image/pattern1/放大-点击.png";
+                    hoverImage: "image/pattern1/放大-点击.png";
+                    state: "normal";
+                }
+                ToolButton{
+                    id:tool3;
+                    width: 36;
+                    height: 36;
+                    backgroundImage: "image/pattern1/缩小-未选中.png";
+                    pressedImage: "image/pattern1/缩小-点击.png"
+                    hoverImage: "image/pattern1/缩小-点击.png";
+                    state: "normal";
+                }
+                ToolButton{
+                    id:tool4;
+                    width: 36;
+                    height: 36;
+                    backgroundImage: "image/pattern1/重置-未选中.png";
+                    pressedImage: "image/pattern1/重置-点击.png";
+                    hoverImage: "image/pattern1/重置-点击.png";
+                    state: "normal";
+                }
+                ToolButton{
+                    id:tool5;
+                    width: 30;
+                    height: 30;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    backgroundImage: "image/pattern1/关闭-未选中.png";
+                    pressedImage: "image/pattern1/关闭-点击.png";
+                    hoverImage: "image/pattern1/关闭-点击.png";
+                    state: "normal";
+                }
+            }
 
-//                spacing: 37;
-//                anchors.left: parent.left;
-//                anchors.top: parent.top;
 
-
-//                MyMenuButton{
-//                    id: opere1;
-//                    height: parent.height;
-//                    width: 37;
-//                    sBottomImage: "image/pattern2/1x/opere1.png";
-//                }
-
-//                MyMenuButton{
-//                    id: opere2;
-//                    height: parent.height;
-//                    width: 37;
-//                    sBottomImage: "image/pattern2/1x/opere2.png";
-//                }
-//                MyMenuButton{
-//                    id: opere3;
-//                    height: parent.height;
-//                    width: 37;
-//                    sBottomImage: "image/pattern2/1x/opere3.png";
-//                }
-//                MyMenuButton{
-//                    id: opere4;
-//                    height: parent.height;
-//                    width: 37;
-//                    sBottomImage: "image/pattern2/1x/opere4.png";
-//                }
-//                MyMenuButton{
-//                    id: opere5;
-//                    height: parent.height;
-//                    width: 37;
-//                    sBottomImage: "image/pattern2/1x/opere5.png";
-//                }
-//            }
 
         }
     /*******************第四个框*********************/
@@ -436,7 +459,7 @@ Rectangle{
                 text: "纹理图案";
             }
         }
-    /******************第五个框********************/
+    /******************图案选择*****************************************************/
 
         Rectangle{
             id: rec5;

@@ -6,13 +6,15 @@ Rectangle{
     color: "transparent";
 
     //------------------------------------------------------------//
-
+    border.width: 0;
+    border.color: "white";
     property var backgroundImag: "";
 
     property var sHoverImage: "";
     property var txt: "";
     property var nIndex: 0;
     property var selcetIn: 0;
+    property var sPressedImage: "";
 
     signal back(var nIndex);
     signal selcect(var selcetIn);
@@ -46,6 +48,7 @@ Rectangle{
         id: buttonMouse;
         anchors.fill: parent;
         acceptedButtons: Qt.LeftButton;
+        hoverEnabled: true;
 
         onReleased:
         {
@@ -54,6 +57,7 @@ Rectangle{
         }
         onEntered:
         {
+            if(vButton.state==="normal")
             vButton.state = "hover";
             /* state === "normal" ? state = "hover" : state = "pressed"; */
         }
@@ -94,6 +98,14 @@ Rectangle{
             {
                 target: vButtonImage;
                 source: backgroundImag;
+            }
+        },
+        State {
+            name: "pressed"
+            PropertyChanges {
+                target: vButtonImage;
+                source: sPressedImage;
+
             }
         },
         State

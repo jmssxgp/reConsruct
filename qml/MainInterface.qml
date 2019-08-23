@@ -40,28 +40,34 @@ Rectangle{
             anchors.topMargin: 26;
             height: 30;
 
-            spacing: 15;
+            spacing: 71;
 
             Button{
                 id: min;
                 width: 30;
                 height: 3;
                 anchors.verticalCenter: parent.verticalCenter;
-                backgroundImag: "image/pattern1/最小化.png"
+                backgroundImag: "image/pattern1/最小化-未选中.png"
+                sHoverImage: "image/pattern1/最小化.png"
+                state: "normal";
                 nIndex: 0;
             }
             Button{
                 id: max;
                 width: 30;
                 height: 30;
-                backgroundImag: "image/pattern1/放大-半屏.png"
+                backgroundImag: "image/pattern1/放大-半屏-未选中.png"
+                sHoverImage: "image/pattern1/放大-半屏.png";
+                state: "normal";
                 nIndex: 1;
             }
             Button{
                 id: exit;
-                width: 30;
-                height: 30;
-                backgroundImag: "image/pattern1/关闭-1.png"
+                width: 24;
+                height: 24;
+                backgroundImag: "image/pattern1/关闭-未选中-1.png"
+                sHoverImage: "image/pattern1/关闭-1.png"
+                state: "normal";
                 nIndex: 2;
             }
         }
@@ -208,7 +214,7 @@ Rectangle{
                 height: 200;
                 nIndex: 3;
                 backgroundImag: "image/pattern1/模式1.png";
-                sHoverImage: "image/pattern1/模式2.png"
+                sHoverImage: "image/pattern1/模式1.png";
                 txt: "几\n何\n重\n构";
                 state: "normal";
                 onSelcect: {
@@ -324,6 +330,7 @@ Rectangle{
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮1.png";
                 txt: "重构按钮1";
+                nIndex: -1;
             }
             Button{
                 id: reButton2;
@@ -331,6 +338,7 @@ Rectangle{
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮2.png";
                 txt: "重构按钮2";
+                nIndex: -1;
             }
             Button{
                 id: reButton3;
@@ -338,6 +346,7 @@ Rectangle{
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮3.png";
                 txt: "重构按钮3";
+                nIndex: -1;
             }
             Button{
                 id: reButton4;
@@ -345,6 +354,7 @@ Rectangle{
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮4.png";
                 txt: "重构按钮4";
+                nIndex: -1;
             }
         }
     }
@@ -356,7 +366,7 @@ Rectangle{
         id: toolbutton;
         color: "transparent";
         width: 319;
-        height: 36;
+        height: 37;
         anchors.left: parent.left;
         anchors.leftMargin: 803;
         anchors.top: parent.top;
@@ -368,15 +378,15 @@ Rectangle{
             height: parent.height;
             anchors.left: parent.left;
 
-            spacing: 25;
+            spacing: 37;
 
             ToolButton{
                 id:tool1;
-                width: 36;
-                height: 36;
+                width: 33;
+                height: 37;
                 backgroundImage: "image/pattern1/保存-未选中.png";
-                pressedImage: "image/pattern1/保存-移至icon.png";
-                hoverImage: "image/pattern1/保存-移至icon.png";
+                pressedImage: "image/pattern1/保存-点击.png";
+                hoverImage: "image/pattern1/保存-点击.png";
                 state: "normal";
             }
             ToolButton{
@@ -384,8 +394,8 @@ Rectangle{
                 width: 36;
                 height: 36;
                 backgroundImage: "image/pattern1/放大-未选中.png";
-                pressedImage: "image/pattern1/放大-移至icon.png";
-                hoverImage: "image/pattern1/放大-移至icon.png";
+                pressedImage: "image/pattern1/放大-点击.png";
+                hoverImage: "image/pattern1/放大-点击.png";
                 state: "normal";
             }
             ToolButton{
@@ -393,8 +403,8 @@ Rectangle{
                 width: 36;
                 height: 36;
                 backgroundImage: "image/pattern1/缩小-未选中.png";
-                pressedImage: "image/pattern1/缩小-移至icon.png"
-                hoverImage: "image/pattern1/缩小-移至icon.png";
+                pressedImage: "image/pattern1/缩小-点击.png"
+                hoverImage: "image/pattern1/缩小-点击.png";
                 state: "normal";
             }
             ToolButton{
@@ -402,8 +412,8 @@ Rectangle{
                 width: 36;
                 height: 36;
                 backgroundImage: "image/pattern1/重置-未选中.png";
-                pressedImage: "image/pattern1/重置-移至icon.png";
-                hoverImage: "image/pattern1/重置-移至icon.png";
+                pressedImage: "image/pattern1/重置-点击.png";
+                hoverImage: "image/pattern1/重置-点击.png";
                 state: "normal";
             }
             ToolButton{
@@ -412,8 +422,8 @@ Rectangle{
                 height: 30;
                 anchors.verticalCenter: parent.verticalCenter;
                 backgroundImage: "image/pattern1/关闭-未选中.png";
-                pressedImage: "image/pattern1/关闭-移至icon.png";
-                hoverImage: "image/pattern1/关闭-移至icon.png";
+                pressedImage: "image/pattern1/关闭-点击.png";
+                hoverImage: "image/pattern1/关闭-点击.png";
                 state: "normal";
             }
         }

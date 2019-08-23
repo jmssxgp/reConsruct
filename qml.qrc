@@ -12,5 +12,6 @@
         <file>qml/ConfirmButton.qml</file>
         <file>qml/SubWin2.qml</file>
         <file>qml/StatusBar.qml</file>
+        <file>qml/ImageSelect.qml</file>
     </qresource>
 </RCC>
