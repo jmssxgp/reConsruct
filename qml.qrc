@@ -13,5 +13,6 @@
         <file>qml/SubWin2.qml</file>
         <file>qml/StatusBar.qml</file>
         <file>qml/ImageSelect.qml</file>
+        <file>qml/MyMenuButton.qml</file>
     </qresource>
 </RCC>

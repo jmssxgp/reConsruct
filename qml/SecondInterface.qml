@@ -124,59 +124,8 @@ Rectangle{
         }
     }
 
-/**
-  菜单栏****************************************************************************
-  */
-    Rectangle{
-        id: menubar2;
-        color: "#000000"             //"#d6d6d7";
-        width: parent.width;
-        height: 62;
-        anchors.top: parent.top;
-        anchors.topMargin: 86;
 
-        Row{
-            id: menubarButton;
 
-            width: parent.width;
-            height: parent.height;
-
-            spacing: 1;
-            anchors.left: parent.left;
-            anchors.top: parent.top;
-
-            BarButton{
-                id: file2;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/1文件栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 474.png";
-                foregroundImageRight: "image/pattern1/文件-1.png"
-                txt: "文件";
-            }
-
-            BarButton{
-                id: help2;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/2帮助栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 475.png";
-                foregroundImageRight: "image/pattern1/帮助-1.png"
-                txt: "帮助";
-            }
-
-        }
-
-        Image {
-            id: velse2
-            source: "image/pattern1/3其他栏.png";
-            anchors.left: parent.left;
-            anchors.leftMargin: 702;
-            anchors.top: parent.top;
-        }
-    }
 /**
   模式切换******************************************************************
   */
@@ -489,4 +438,182 @@ Rectangle{
         txt:"就绪";
         backgroundImg: "image/pattern1/状态栏.png";
     }
+
+ /**************菜单栏**************************/
+    Rectangle{
+        id: menubar;
+        color: "#000000"             //"#d6d6d7";
+        width: 1920;
+        height: 62;
+        anchors.top: parent.top;
+        anchors.topMargin: 86;
+
+        Row{
+            id: menubarButton;
+
+            width: parent.width;
+            height: parent.height;
+
+
+            spacing: 1;
+            anchors.left: parent.left;
+            anchors.top: parent.top;
+
+            MyMenuButton
+            {
+                id: file;
+
+                width: 350;
+                height: parent.height;
+                sBottomImage:"image/pattern1/1文件栏";
+                sLeftImage: "image/pattern1/矩形 474";
+                sRightImage:"image/pattern1/文件-1.png";
+                sTextText: "文件";
+                nIndex: 0;
+            }
+
+            MyMenuButton
+            {
+                id: help;
+
+                width: 350;
+                height: 62;
+                sBottomImage: "image/pattern1/2帮助栏.png";
+                sLeftImage: "image/pattern1/矩形 475.png";
+                sRightImage: "image/pattern1/帮助-1.png";
+                sTextText: "帮助";
+                nIndex: 1;
+            }
+            MyMenuButton
+            {
+                id: otherfunction;
+
+                width: 1225;
+                height: parent.height;
+                sBottomImage: "image/pattern1/3其他栏.png";
+                nIndex:100;//待开发按钮的标识
+            }
+        }
+
+
+        Rectangle
+        {
+            id: rect_MenuFile;
+            visible: false;
+            z:1;
+
+            x:file.x;
+            y:file.y+62;
+            width: 350;
+            height: 62 * 4 ;
+            color: "transparent";
+
+            Column
+            {
+                id: colum_File;
+                anchors.horizontalCenter: parent.horizontalCenter;
+                anchors.top: parent.top;
+
+
+                MyMenuButton
+                {
+                    width: 350;
+                    height: 62;
+                    nTextSize: 20;
+                    sTextText: "打开图片";
+                    sBottomImage:"image/pattern1/1文件栏.png";
+                    sLeftImage: "image/pattern1/矩形 474.png";
+                    sRightImage: "image/pattern1/打开图片.png";
+                    state: "normal";
+                    nIndex: 2;
+                }
+                MyMenuButton
+                {
+                    width: 350;
+                    height: 62;
+                    nTextSize: 20;
+                    sTextText: "退出程序";
+                    sBottomImage:"image/pattern1/1文件栏.png";
+                    sLeftImage: "image/pattern1/矩形 474.png";
+                    sRightImage: "image/pattern1/退出程序-2.png";
+                    state: "normal";
+                    nIndex: 3;
+                }
+
+            }
+
+
+        }
+
+        Rectangle
+        {
+            id: rect_MenuEdit;
+            visible: false;
+
+            x:help.x ;
+            y:help.y+62;
+            width: 350;
+            height: 62 * 4 ;
+            color: "transparent";
+
+            Column
+            {
+                id: colum_Edit;
+                anchors.horizontalCenter: parent.horizontalCenter;
+                anchors.top: parent.top;
+
+                MyMenuButton
+                {
+                    width: 350;
+                    height: 62;
+                    nTextSize: 20;
+                    sTextText: "使用说明";
+                    sBottomImage:"image/pattern1/1文件栏.png";
+                    sLeftImage: "image/pattern1/矩形 475";
+                    sRightImage: "image/pattern1/使用说明.png";
+                    state: "normal";
+                    nIndex: 4;
+                }
+                MyMenuButton
+                {
+                    width: 350;
+                    height: 62;
+                    nTextSize: 20;
+                    sTextText: "关于我们";
+                    sBottomImage:"image/pattern1/1文件栏.png";
+                    sLeftImage: "image/pattern1/矩形 475.png";
+                    sRightImage: "image/pattern1/关于我们.png";
+                    state: "normal";
+                    nIndex: 5;
+                }
+
+            }
+
+
+        }
+
+        MouseArea
+        {
+            id:menuAllMouseArea;
+            visible: false;
+            z:-1;
+
+
+            width: main_W.width;
+            height: main_W.height;
+
+            onClicked:
+            {
+                console.log("visible");
+                rect_MenuFile.visible = false;
+                rect_MenuEdit.visible = false;
+                menuAllMouseArea.visible = false;
+                console.log("set success");
+            }
+
+        }
+
+
+    }
+
 }
