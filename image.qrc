@@ -59,5 +59,9 @@
         <file>qml/image/pattern1/关闭-未选中-1.png</file>
         <file>qml/image/pattern1/放大-半屏-未选中.png</file>
         <file>qml/image/pattern1/最小化-未选中.png</file>
+        <file>qml/image/pattern1/打开图片.png</file>
+        <file>qml/image/pattern1/关于我们.png</file>
+        <file>qml/image/pattern1/使用说明.png</file>
+        <file>qml/image/pattern1/退出程序-2.png</file>
     </qresource>
 </RCC>
