@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "imagepaint.js" as Painter
 
 Rectangle{
     id:toolbutton;
@@ -30,7 +31,6 @@ Rectangle{
         }
         onReleased:
         {
-            //鼠标按下释放掉了，返回一个信号，告诉我的上层父亲，我被按下了，需要执行相应操作
             back(nIndex);
             toolbutton.state="normal";
         }
@@ -54,6 +54,8 @@ Rectangle{
 
             /* state === "hover" ? state = "normal" : state = "pressed"; */
         }
+
+
     }
 
     states: [

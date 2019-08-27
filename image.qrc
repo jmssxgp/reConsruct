@@ -59,5 +59,24 @@
         <file>qml/image/pattern1/关闭-未选中-1.png</file>
         <file>qml/image/pattern1/放大-半屏-未选中.png</file>
         <file>qml/image/pattern1/最小化-未选中.png</file>
+        <file>qml/image/pattern2/拖动1.png</file>
+        <file>qml/image/pattern2/拖动条1.png</file>
+        <file>qml/image/pattern2/生成图-1.png</file>
+        <file>qml/image/pattern2/生成图-2.png</file>
+        <file>qml/image/pattern2/生成图-3.png</file>
+        <file>qml/image/pattern2/生成图-4.png</file>
+        <file>qml/image/barmenu/帮助-1.png</file>
+        <file>qml/image/barmenu/帮助2.png</file>
+        <file>qml/image/barmenu/帮助使用说明2.png</file>
+        <file>qml/image/barmenu/打开图片.png</file>
+        <file>qml/image/barmenu/打开图片-2.png</file>
+        <file>qml/image/barmenu/关于我们.png</file>
+        <file>qml/image/barmenu/关于我们-2.png</file>
+        <file>qml/image/barmenu/矩形 476.png</file>
+        <file>qml/image/barmenu/使用说明-1.png</file>
+        <file>qml/image/barmenu/退出程序.png</file>
+        <file>qml/image/barmenu/退出程序-2.png</file>
+        <file>qml/image/barmenu/文件-1.png</file>
+        <file>qml/image/barmenu/文件2.png</file>
     </qresource>
 </RCC>

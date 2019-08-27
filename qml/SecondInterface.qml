@@ -1,9 +1,13 @@
 import QtQuick 2.0
+import com.test.PathModel 1.0
+import "imagepaint.js" as Painter
 
 Rectangle{
     id: vSecondInterface;
     color: "transparent";
-
+    property int n;
+    property var l;
+    property string s: ""
 
     Rectangle{
         id: topHurdle2;
@@ -99,6 +103,11 @@ Rectangle{
                 main_W.setY(main_W.y+delta.y)
             }
 
+            onClicked: {
+                rect_MenuFile.visible = false;
+                rect_MenuEdit.visible = false;
+            }
+
             onDoubleClicked:
             {
                 main_W.visibility === Window.Windowed ?
@@ -124,59 +133,7 @@ Rectangle{
         }
     }
 
-/**
-  菜单栏****************************************************************************
-  */
-    Rectangle{
-        id: menubar2;
-        color: "#000000"             //"#d6d6d7";
-        width: parent.width;
-        height: 62;
-        anchors.top: parent.top;
-        anchors.topMargin: 86;
 
-        Row{
-            id: menubarButton;
-
-            width: parent.width;
-            height: parent.height;
-
-            spacing: 1;
-            anchors.left: parent.left;
-            anchors.top: parent.top;
-
-            BarButton{
-                id: file2;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/1文件栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 474.png";
-                foregroundImageRight: "image/pattern1/文件-1.png"
-                txt: "文件";
-            }
-
-            BarButton{
-                id: help2;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/2帮助栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 475.png";
-                foregroundImageRight: "image/pattern1/帮助-1.png"
-                txt: "帮助";
-            }
-
-        }
-
-        Image {
-            id: velse2
-            source: "image/pattern1/3其他栏.png";
-            anchors.left: parent.left;
-            anchors.leftMargin: 702;
-            anchors.top: parent.top;
-        }
-    }
 /**
   模式切换******************************************************************
   */
@@ -305,20 +262,71 @@ Rectangle{
             }
         }
 
+
+
+
+
+
+
     /********************第二个框**************/
         Rectangle{
             id:rec2;
             anchors.left: parent.left;
             anchors.top: parent.top;
             anchors.topMargin: 238;
-
+            color: "transparent"
             width: 435;
             height: 570;
-
             Image {
-                id: bgImage2;
-                anchors.fill: parent;
+                id: viewBack01;
                 source: "image/pattern2/纹理树.png";
+                anchors.fill: parent;
+            }
+            //模型
+            ListModel{
+                id: model;
+                ListElement{ima: "image/pattern2/纹理树.png"}
+            }
+            //视图
+            ListView{
+                id: view;
+                clip: true;
+                anchors.fill: parent;
+                anchors.rightMargin: 33;
+                model: model;
+                spacing: 0
+                delegate: Rectangle{
+                    width: 435;
+                    height: 2000;
+                    color: "transparent";
+                    PatternTree{
+                        width: 100;
+                        height: 60;
+                        color: "black"
+                        anchors.left: parent.left;
+                        path: "F:/master/重构软件/交互几何重构/模式2/1x";
+                        txt:"TEST"
+                    }
+                }
+            }
+            //代理******************************************************************************************************
+//            Component{
+//                id: delegate;
+
+//            }
+            //**********************************************************************************************************
+
+            //滑动条
+            Sliderbar{
+                id:slider;
+                visible: true;
+                anchors.right: parent.right;
+                anchors.top: parent.top;
+                list: view;
+                width: 33;
+                height: 570;
+                imageslider:"image/pattern2/拖动条1.png"
+                imageback:"image/pattern2/拖动1.png"
             }
 
             Text {
@@ -333,6 +341,12 @@ Rectangle{
                 text: qsTr("纹理树");
             }
          }
+
+
+
+
+
+
     /***************第三个框***************/
         Rectangle{
             id: rec3;
@@ -349,10 +363,15 @@ Rectangle{
                 source: "image/pattern2/矩形 489.png";
             }
         }
-     /*************结果******************/
+
+
+
+
+
+     /***********************画布**************************************/
         Rectangle{
             id: imageShow;
-            color: "transparent";
+            //color: "transparent";
 
             width: 615;
             height: 565;
@@ -361,12 +380,52 @@ Rectangle{
             anchors.top: parent.top;
             anchors.topMargin: 72;
 
-            Image {
-                id: imageGenerate;
-                source: "image/pattern2/生成图.png";   //应设置为变量
+
+            Canvas{
+                id: draw;
                 anchors.fill: parent;
+
+                onPaint: {
+                    Painter.setContext(draw.getContext("2d"), draw);
+                    Painter.drawGraphics();
+                }
+
+
+                MouseArea{
+                    id: mouseEvent;
+                    anchors.fill: parent;
+
+                    onPressed: {
+                        Painter.setContext(draw.getContext("2d"),draw);
+
+                        draw.requestPaint();
+
+                        Painter.canvasClick(mouseX, mouseY);
+                    }
+
+                    onReleased: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.stopDragging();
+                    }
+
+                    onPositionChanged: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.dragGraphic(mouseX, mouseY);
+                    }
+
+                }
             }
         }
+
+
+
+
+
+
+
+
     /**********************操作按钮******************/
         Rectangle{
             id: operater;
@@ -377,6 +436,7 @@ Rectangle{
             anchors.topMargin: 688;
             anchors.left: parent.left;
             anchors.leftMargin: 806;
+
 
             Row{
                 anchors.top: parent.top;
@@ -393,6 +453,7 @@ Rectangle{
                     pressedImage: "image/pattern1/保存-点击.png";
                     hoverImage: "image/pattern1/保存-点击.png";
                     state: "normal";
+                    nIndex: 0;
                 }
                 ToolButton{
                     id:tool2;
@@ -402,6 +463,7 @@ Rectangle{
                     pressedImage: "image/pattern1/放大-点击.png";
                     hoverImage: "image/pattern1/放大-点击.png";
                     state: "normal";
+                    nIndex: 1;
                 }
                 ToolButton{
                     id:tool3;
@@ -411,6 +473,7 @@ Rectangle{
                     pressedImage: "image/pattern1/缩小-点击.png"
                     hoverImage: "image/pattern1/缩小-点击.png";
                     state: "normal";
+                    nIndex: 2
                 }
                 ToolButton{
                     id:tool4;
@@ -420,6 +483,13 @@ Rectangle{
                     pressedImage: "image/pattern1/重置-点击.png";
                     hoverImage: "image/pattern1/重置-点击.png";
                     state: "normal";
+                    nIndex: 3;
+                    onBack: {
+                        console.log("777777777777")
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.clearCanvas();
+                    }
                 }
                 ToolButton{
                     id:tool5;
@@ -430,6 +500,7 @@ Rectangle{
                     pressedImage: "image/pattern1/关闭-点击.png";
                     hoverImage: "image/pattern1/关闭-点击.png";
                     state: "normal";
+                    nIndex: 4;
                 }
             }
 
@@ -465,14 +536,95 @@ Rectangle{
             id: rec5;
             anchors.right: parent.right;
             anchors.bottom:  parent.bottom;
-
+            color: "transparent";
             width: 300;
             height: 741;
-
             Image {
-                id: bgImage5;
-                anchors.fill: parent;
+                id: viewBack;
                 source: "image/pattern2/纹理选框.png";
+                anchors.fill: parent;
+            }
+
+
+            PathModel{
+                id: pathmodel;
+//                Component.onCompleted: {
+//                    l = getNames("F:/master/自动标注例图/蒙古族");
+//                    n = getNum();
+//                    for(var i=0;i<n;i++)
+//                    model01.append({"ima":"file:///"+l[i]})
+//                }
+            }
+            ListModel{
+                id: model01;
+            }
+
+            ListView{
+                id: view01;
+                clip: true;
+                anchors.fill: parent;
+                anchors.top: parent.top;
+                anchors.topMargin: 34;
+                anchors.left: parent.left;
+                anchors.leftMargin: 67;
+                model: model01;
+
+
+                delegate: Rectangle {
+                    width: 166;
+                    height: 151;
+                    // 列表项
+                    Image {
+                        anchors.fill: parent;
+                        source: ima;
+                    }
+                    MouseArea{
+                        anchors.fill: parent;
+                        onClicked: {
+                            view01.currentIndex = index;
+                            console.log(index);
+                            Painter.setContext(draw.getContext("2d"), draw);
+                            draw.requestPaint();
+                            l = pathmodel.getWithoutPath();
+                            console.log(l)
+                            Painter.addGraphic(0,0,"file:///"+ l[index]);
+                        }
+                    }
+                }
+
+                spacing:22
+            }
+
+            // 代理
+//            Rectangle {
+//                id: delegate01
+
+//                // 列表项
+//                Image {
+//                    width: 166;
+//                    height: 151;
+//                    source: ima;
+//                }
+//                MouseArea{
+//                    anchors.fill: parent;
+//                    onClicked: {
+//                        view01.currentIndex = index;
+//                        console.log(index);
+//                    }
+//                }
+//            }
+
+            //滚动条
+            Sliderbar{
+                id:slider01;
+                visible:true;
+                anchors.right: parent.right;
+                anchors.top: parent.top;
+                list:view01;
+                width:31;
+                height:739;
+                imageslider:"image/pattern2/拖动条1.png"
+                imageback:"image/pattern2/拖动1.png"
             }
          }
     }
@@ -489,4 +641,175 @@ Rectangle{
         txt:"就绪";
         backgroundImg: "image/pattern1/状态栏.png";
     }
+
+    /**
+      菜单栏****************************************************************************
+      */
+        Rectangle{
+            id: menubar2;
+            color: "#000000"             //"#d6d6d7";
+            width: parent.width;
+            height: 62;
+            anchors.top: parent.top;
+            anchors.topMargin: 86;
+
+            Row{
+                id: menubarButton;
+
+                width: parent.width;
+                height: parent.height;
+
+                spacing: 1;
+                anchors.left: parent.left;
+                anchors.top: parent.top;
+
+                BarButton{
+                    id: file2;
+
+                    width: 350;
+                    height: parent.height;
+                    backgroundImage: "image/pattern1/1文件栏.png";
+                    foregroundImageLeft: "image/pattern1/矩形 474.png";
+                    foregroundImageRight: "image/pattern1/文件-1.png"
+                    txt: "文件";
+                    nIndex: 0;
+                    distance: 135;
+                }
+
+                BarButton{
+                    id: help2;
+
+                    width: 350;
+                    height: parent.height;
+                    backgroundImage: "image/pattern1/2帮助栏.png";
+                    foregroundImageLeft: "image/pattern1/矩形 475.png";
+                    foregroundImageRight: "image/pattern1/帮助-1.png"
+                    txt: "帮助";
+                    nIndex: 1;
+                    distance: 135;
+                }
+            }
+
+            Rectangle
+            {
+                id: rect_MenuFile;
+                visible: false;
+                x:file2.x;
+                y:file2.y+62;
+                width: 350;
+                height: 62 * 2 ;
+                color: "transparent";
+                Column
+                {
+                    id: colum_File;
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    anchors.top: parent.top;
+
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "打开文件";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/打开图片-2.png";
+                        state: "normal";
+                        nIndex: 2;
+                        distance: 90;
+                    }
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "退出程序";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/退出程序-2.png"
+                        state: "normal";
+                        nIndex: 3;
+                        distance: 90;
+                    }
+                }
+            }
+
+            Rectangle
+            {
+                id: rect_MenuEdit;
+                visible: false;
+
+                x:help2.x;
+                y:help2.y+62;
+                width: 350;
+                height: 62 * 2 ;
+                color: "transparent";
+
+                Column
+                {
+                    id: colum_Help;
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    anchors.top: parent.top;
+
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "使用说明";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/使用说明-1.png"
+                        state: "normal";
+                        nIndex: 4;
+                        distance: 90;
+                    }
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "关于我们";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/关于我们-2.png"
+                        state: "normal";
+                        nIndex: 5;
+                        distance: 90;
+                    }
+                }
+            }
+
+            Image {
+                id: velse2
+                source: "image/pattern1/3其他栏.png";
+                anchors.left: parent.left;
+                anchors.leftMargin: 702;
+                anchors.top: parent.top;
+            }
+        }
+
+        /****************************鼠标可以点击其他地方使菜单栏收起***********************************
+          ************/
+        MouseArea
+          {
+              id:menuAllMouseArea;
+              visible: false;
+              z:-1;
+
+
+              width: main_W.width;
+              height: main_W.height;
+
+              onClicked:
+              {
+                  console.log("visible");
+                  rect_MenuFile.visible = false;
+                  rect_MenuEdit.visible = false;
+                  menuAllMouseArea.visible = false;
+                  console.log("set success");
+              }
+          }
+
+
 }

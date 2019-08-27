@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
+import com.test.PathModel 1.0
 Rectangle{
     id: vButton;
 
@@ -9,12 +10,12 @@ Rectangle{
     border.width: 0;
     border.color: "white";
     property var backgroundImag: "";
-
     property var sHoverImage: "";
     property var txt: "";
     property var nIndex: 0;
     property var selcetIn: 0;
     property var sPressedImage: "";
+
 
     signal back(var nIndex);
     signal selcect(var selcetIn);

@@ -1,4 +1,6 @@
 import QtQuick 2.0
+import QtQuick.Dialogs 1.2
+
 
 Rectangle{
     id: vBarButton;
@@ -8,6 +10,9 @@ Rectangle{
     property var foregroundImageRight: "";
     property var foregroundImageLeft: "";
     property var txt: "";
+    property var nIndex: 0;
+    property var size: 25;
+    property var distance: 0;
     Image {
         id: vbuttonBack;
         source: backgroundImage;
@@ -20,7 +25,7 @@ Rectangle{
         anchors.top: parent.top;
         anchors.topMargin: 22;
         anchors.right: parent.right;
-        anchors.rightMargin: 135;
+        anchors.rightMargin: distance;
     }
 
     Image {
@@ -44,5 +49,53 @@ Rectangle{
         font.family: "simplex";
         font.pixelSize: 25;
         color: "#ffffff";
+    }
+
+
+    MouseArea{
+        id:buttonMouse;
+        anchors.fill: parent;
+        acceptedButtons: Qt.LeftButton;
+
+        onPressed: {
+            menuAllMouseArea.visible=true;
+            if(nIndex===0){
+                rect_MenuFile.visible=true;
+                rect_MenuEdit.visible=false;
+            }
+            if(nIndex===1){
+                rect_MenuFile.visible=false;
+                rect_MenuEdit.visible=true;
+            }
+        }
+
+        onReleased: {
+            if(nIndex>1){
+                rect_MenuFile.visible=false;
+                rect_MenuEdit.visible=false;
+            }
+        }
+
+        onClicked: {
+
+            if(nIndex===2){
+                fileDialog.open();
+            }
+
+            if(nIndex===3){
+                Qt.quit();
+            }
+        }
+        FileDialog{
+            id: fileDialog;
+            folder: shortcuts.desktop;
+            nameFilters: ["Image files (*.jpg)", "HTML files (*.html, *.htm)"]
+            onAccepted: {
+                if (fileDialog.selectExisting)
+                    document.fileUrl = fileUrl;
+                else
+                    document.saveAs(fileUrl, selectedNameFilter);
+            }
+        }
     }
 }

@@ -13,5 +13,9 @@
         <file>qml/SubWin2.qml</file>
         <file>qml/StatusBar.qml</file>
         <file>qml/ImageSelect.qml</file>
+        <file>qml/Sliderbar.qml</file>
+        <file>qml/DrawGraphic.qml</file>
+        <file>qml/imagepaint.js</file>
+        <file>qml/PatternTree.qml</file>
     </qresource>
 </RCC>

@@ -134,59 +134,7 @@ Rectangle{
         }
     }
 
-/**
-  菜单栏****************************************************************************
-  */
-    Rectangle{
-        id: menubar;
-        color: "#000000"             //"#d6d6d7";
-        width: parent.width;
-        height: 62;
-        anchors.top: parent.top;
-        anchors.topMargin: 86;
 
-        Row{
-            id: menubarButton;
-
-            width: parent.width;
-            height: parent.height;
-
-            spacing: 1;
-            anchors.left: parent.left;
-            anchors.top: parent.top;
-
-            BarButton{
-                id: file;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/1文件栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 474.png";
-                foregroundImageRight: "image/pattern1/文件-1.png"
-                txt: "文件";
-            }
-
-            BarButton{
-                id: help;
-
-                width: 350;
-                height: parent.height;
-                backgroundImage: "image/pattern1/2帮助栏.png";
-                foregroundImageLeft: "image/pattern1/矩形 475.png";
-                foregroundImageRight: "image/pattern1/帮助-1.png"
-                txt: "帮助";
-            }
-
-        }
-
-        Image {
-            id: velse
-            source: "image/pattern1/3其他栏.png";
-            anchors.left: parent.left;
-            anchors.leftMargin: 702;
-            anchors.top: parent.top;
-        }
-    }
 /**
   模式切换******************************************************************
   */
@@ -229,7 +177,7 @@ Rectangle{
                 height: 200;
                 nIndex: 4;
                 backgroundImag: "image/pattern1/模式2.png";
-                sHoverImage: "image/pattern2/模式2.png"
+                sHoverImage: "image/pattern2/模式2.png";
                 txt: "语\n义\n重\n构";
                 state: "normal";
                 onSelcect: {
@@ -442,4 +390,174 @@ Rectangle{
         backgroundImg: "image/pattern1/状态栏.png";
     }
 
+    /**
+      菜单栏****************************************************************************
+      */
+        Rectangle{
+            id: menubar;
+            color: "#000000"             //"#d6d6d7";
+            width: parent.width;
+            height: 62;
+            anchors.top: parent.top;
+            anchors.topMargin: 86;
+
+            Row{
+                id: menubarButton;
+
+                width: parent.width;
+                height: parent.height;
+
+                spacing: 1;
+                anchors.left: parent.left;
+                anchors.top: parent.top;
+
+                BarButton{
+                    id: file;
+
+                    width: 350;
+                    height: parent.height;
+                    backgroundImage: "image/pattern1/1文件栏.png";
+                    foregroundImageLeft: "image/pattern1/矩形 474.png";
+                    foregroundImageRight: "image/pattern1/文件-1.png"
+                    txt: "文件";
+                    nIndex: 0;
+                    distance: 135;
+                }
+
+                BarButton{
+                    id: help;
+
+                    width: 350;
+                    height: parent.height;
+                    backgroundImage: "image/pattern1/2帮助栏.png";
+                    foregroundImageLeft: "image/pattern1/矩形 475.png";
+                    foregroundImageRight: "image/pattern1/帮助-1.png"
+                    txt: "帮助";
+                    nIndex: 1;
+                    distance: 135;
+                }
+
+            }
+
+            Rectangle
+            {
+                id: rect_MenuFile;
+                visible: false;
+                anchors.left: parent.left;
+                anchors.top: parent.top;
+                anchors.topMargin: 62;
+                width: 350;
+                height: 62 * 2 ;
+                color: "transparent";
+                Column
+                {
+                    id: colum_File;
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    anchors.top: parent.top;
+
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "打开文件";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/打开图片-2.png";
+                        state: "normal";
+                        nIndex: 2;
+                        distance: 90;
+                    }
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "退出程序";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/退出程序-2.png"
+                        state: "normal";
+                        nIndex: 3;
+                        distance: 90;
+                    }
+                }
+            }
+
+            Rectangle
+            {
+                id: rect_MenuEdit;
+                visible: false;
+                anchors.left: parent.left;
+                anchors.leftMargin: 350;
+                anchors.top: parent.top;
+                anchors.topMargin: 62;
+                x:help.x;
+                y:help.y+62;
+                width: 350;
+                height: 62 * 2 ;
+                color: "transparent";
+
+                Column
+                {
+                    id: colum_Help;
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    anchors.top: parent.top;
+
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "使用说明";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/使用说明-1.png"
+                        state: "normal";
+                        nIndex: 4;
+                        distance: 90;
+                    }
+                    BarButton
+                    {
+                        width: 350;
+                        height: 62;
+                        size: 20;
+                        txt: "关于我们";
+                        backgroundImage:"image/barmenu/帮助使用说明2.png";
+                        foregroundImageLeft: "image/pattern1/矩形 475.png";
+                        foregroundImageRight: "image/barmenu/关于我们-2.png"
+                        state: "normal";
+                        nIndex: 5;
+                        distance: 90;
+                    }
+                }
+            }
+
+            Image {
+                id: velse
+                source: "image/pattern1/3其他栏.png";
+                anchors.left: parent.left;
+                anchors.leftMargin: 702;
+                anchors.top: parent.top;
+            }
+        }
+        MouseArea
+          {
+              id:menuAllMouseArea;
+              visible: false;
+              z:-1;
+
+
+              width: main_W.width;
+              height: main_W.height;
+
+              onClicked:
+              {
+                  console.log("visible");
+                  rect_MenuFile.visible = false;
+                  rect_MenuEdit.visible = false;
+                  menuAllMouseArea.visible = false;
+                  console.log("set success");
+              }
+          }
 }
