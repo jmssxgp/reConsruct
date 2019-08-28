@@ -5,6 +5,10 @@ var canvas;
 
 var context;
 
+var backcolor = "#ffffff";
+
+var backimg = "";
+
 function setContext(context_, mapdraw) {
     canvas = mapdraw;
     context = context_;
@@ -30,12 +34,22 @@ function addGraphic(x,y,path){
 //重置
 function clearCanvas(){
     graphics = [];
+    backimg = "";
+    backcolor = "#ffffff";
     drawGraphics();
 }
 
 function drawGraphics(){
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    //context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = backcolor;
+    context.fillRect(0,0,canvas.width, canvas.height);
     console.log("draw start");
+
+    if(backimg!=""){
+        canvas.loadImage(backimg);
+        context.drawImage(backimg,0,0,canvas.width,canvas.height);
+    }
+
     for(var i = 0; i<graphics.length; i++){
         var graphic = graphics[i];
 
@@ -82,11 +96,22 @@ function canvasClick(mouseX, mouseY){
     }
 }
 
+function background(color){
+    backcolor = color;
+    drawGraphics();
+}
+
+function back(img){
+    backimg = img;
+    drawGraphics();
+}
+
 var isDragging = false;
 
 function stopDragging() {
     isDragging = false;
 }
+
 
 function dragGraphic(mouseX, mouseY){
     if(isDragging){

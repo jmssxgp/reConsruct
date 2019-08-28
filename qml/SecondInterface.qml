@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import com.test.PathModel 1.0
+import QtQuick.Dialogs 1.2
 import "imagepaint.js" as Painter
 
 Rectangle{
@@ -8,6 +9,8 @@ Rectangle{
     property int n;
     property var l;
     property string s: ""
+    property color canvascolor: "white";
+    property var colorDlg;
 
     Rectangle{
         id: topHurdle2;
@@ -239,6 +242,14 @@ Rectangle{
                     anchors.centerIn: parent;
                     text: qsTr("背景颜色");
                 }
+                MouseArea{
+                    anchors.fill: parent;
+                    acceptedButtons: Qt.LeftButton;
+                    onClicked: {
+                        console.log(canvascolor);
+                        vSecondInterface.selectColor(vSecondInterface.onCanvasColor);
+                    }
+                }
             }
             Rectangle {
                 id: bgcolor2;
@@ -258,6 +269,29 @@ Rectangle{
                     color: "#ffffff";
                     anchors.centerIn: parent;
                     text: qsTr("背景图片");
+                }
+                MouseArea{
+                    anchors.fill: parent;
+                    acceptedButtons: Qt.LeftButton;
+
+                    onClicked: {
+                        backimage.open();
+                    }
+                }
+
+                FileDialog{
+                    id: backimage;
+                    selectExisting: true;
+                    shortcuts: "desktop";
+                    nameFilters: ["图片文件(*.jpg)"];
+                    onAccepted: {
+                        console.log(fileUrl);
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.back(fileUrl);
+                        Painter.drawGraphics();
+
+                    }
                 }
             }
         }
@@ -417,6 +451,7 @@ Rectangle{
 
                 }
             }
+
         }
 
 
@@ -454,6 +489,11 @@ Rectangle{
                     hoverImage: "image/pattern1/保存-点击.png";
                     state: "normal";
                     nIndex: 0;
+                    onBack: {
+                        console.log("4396666666666666")
+                        draw.save("file:///F:/master/test.png")
+
+                    }
                 }
                 ToolButton{
                     id:tool2;
@@ -811,5 +851,18 @@ Rectangle{
               }
           }
 
+        colorDlg : Qt.createQmlObject('import QtQuick 2.2; import QtQuick.Dialogs 1.2;ColorDialog{}', vSecondInterface, "colorDlg");
+        function selectColor(func){
+            if(colorDlg != null){
+                colorDlg.accepted.connect(func);
+                colorDlg.visible = true;
+            }
+        }
 
+        function onCanvasColor(){
+            vSecondInterface.canvascolor = colorDlg.color;
+            Painter.setContext(draw.getContext("2d"), draw);
+            draw.requestPaint();
+            Painter.background(canvascolor);
+        }
 }

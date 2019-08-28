@@ -89,12 +89,11 @@ Rectangle{
         FileDialog{
             id: fileDialog;
             folder: shortcuts.desktop;
+            selectExisting: false;
+
             nameFilters: ["Image files (*.jpg)", "HTML files (*.html, *.htm)"]
             onAccepted: {
-                if (fileDialog.selectExisting)
-                    document.fileUrl = fileUrl;
-                else
-                    document.saveAs(fileUrl, selectedNameFilter);
+                console.log(fileUrl)
             }
         }
     }
