@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import "imagepaint.js" as Painter
+import QtQuick.Dialogs 1.2
 
 Rectangle{
     id:toolbutton;
@@ -54,7 +55,12 @@ Rectangle{
 
             /* state === "hover" ? state = "normal" : state = "pressed"; */
         }
+        onClicked: {
+            if(nIndex==0){
+                filesave.open();
+            }
 
+        }
 
     }
 
@@ -87,4 +93,20 @@ Rectangle{
             }
         }
     ]
+
+    //保存画布内容********************************************
+    FileDialog{
+        id: filesave;
+        selectExisting: false;
+        folder: shortcuts.desktop;
+        nameFilters: ["image files(*.jpg)"];
+        onAccepted: {
+            if(fileUrl!==""){
+                draw.save(fileUrl.toString().substring(8,fileUrl.length));
+
+            }
+        }
+
+    }
+
 }

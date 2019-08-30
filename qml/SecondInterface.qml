@@ -11,6 +11,7 @@ Rectangle{
     property string s: ""
     property color canvascolor: "white";
     property var colorDlg;
+    property var toolmansimage: ""
 
     Rectangle{
         id: topHurdle2;
@@ -282,7 +283,7 @@ Rectangle{
                 FileDialog{
                     id: backimage;
                     selectExisting: true;
-                    shortcuts: "desktop";
+                    folder: shortcuts.desktop
                     nameFilters: ["图片文件(*.jpg)"];
                     onAccepted: {
                         console.log(fileUrl);
@@ -398,6 +399,11 @@ Rectangle{
             }
         }
 
+        Image{
+            id: toolman;
+            source: toolmansimage;
+            visible: false;
+        }
 
 
 
@@ -489,11 +495,6 @@ Rectangle{
                     hoverImage: "image/pattern1/保存-点击.png";
                     state: "normal";
                     nIndex: 0;
-                    onBack: {
-                        console.log("4396666666666666")
-                        draw.save("file:///F:/master/test.png")
-
-                    }
                 }
                 ToolButton{
                     id:tool2;
@@ -504,6 +505,12 @@ Rectangle{
                     hoverImage: "image/pattern1/放大-点击.png";
                     state: "normal";
                     nIndex: 1;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.enlarge();
+                    }
+
                 }
                 ToolButton{
                     id:tool3;
@@ -513,7 +520,12 @@ Rectangle{
                     pressedImage: "image/pattern1/缩小-点击.png"
                     hoverImage: "image/pattern1/缩小-点击.png";
                     state: "normal";
-                    nIndex: 2
+                    nIndex: 2;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.reduce();
+                    }
                 }
                 ToolButton{
                     id:tool4;
@@ -525,11 +537,11 @@ Rectangle{
                     state: "normal";
                     nIndex: 3;
                     onBack: {
-                        console.log("777777777777")
                         Painter.setContext(draw.getContext("2d"), draw);
                         draw.requestPaint();
-                        Painter.clearCanvas();
+                        Painter.resize();
                     }
+
                 }
                 ToolButton{
                     id:tool5;
@@ -541,6 +553,12 @@ Rectangle{
                     hoverImage: "image/pattern1/关闭-点击.png";
                     state: "normal";
                     nIndex: 4;
+                    onBack: {
+                        console.log("777777777777")
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.clearCanvas();
+                    }
                 }
             }
 
@@ -588,12 +606,6 @@ Rectangle{
 
             PathModel{
                 id: pathmodel;
-//                Component.onCompleted: {
-//                    l = getNames("F:/master/自动标注例图/蒙古族");
-//                    n = getNum();
-//                    for(var i=0;i<n;i++)
-//                    model01.append({"ima":"file:///"+l[i]})
-//                }
             }
             ListModel{
                 id: model01;
@@ -626,8 +638,9 @@ Rectangle{
                             Painter.setContext(draw.getContext("2d"), draw);
                             draw.requestPaint();
                             l = pathmodel.getWithoutPath();
-                            console.log(l)
-                            Painter.addGraphic(0,0,"file:///"+ l[index]);
+                            toolmansimage = "file:///"+ l[index];
+
+                            Painter.addGraphic(0,0,toolmansimage,toolman.width,toolman.height);
                         }
                     }
                 }
@@ -850,7 +863,8 @@ Rectangle{
                   console.log("set success");
               }
           }
-
+        
+        //取色板**************************************************************************************
         colorDlg : Qt.createQmlObject('import QtQuick 2.2; import QtQuick.Dialogs 1.2;ColorDialog{}', vSecondInterface, "colorDlg");
         function selectColor(func){
             if(colorDlg != null){

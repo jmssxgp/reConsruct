@@ -15,18 +15,23 @@ function setContext(context_, mapdraw) {
 }
 
 //图形定义
-function Graphic(x,y,path){
+function Graphic(x,y,path,w,h){
     this.x = x;
     this.y = y;
     this.path = path;
+    this.w = w;
+    this.h = h;
+    this.width = w;
+    this.height = h;
+    this.scal = 0;
     this.isSelected = false;
 }
 
 //添加图片
-function addGraphic(x,y,path){
+function addGraphic(x,y,path,w,h){
     var graphicpath = path;
 
-    var graphic = new Graphic(x,y,graphicpath);
+    var graphic = new Graphic(x,y,graphicpath,w,h);
     graphics.push(graphic);
     drawGraphics();
     console.log(graphics.length)
@@ -54,7 +59,7 @@ function drawGraphics(){
         var graphic = graphics[i];
 
         //绘制图片
-        context.drawImage(graphic.path,graphic.x,graphic.y);
+        context.drawImage(graphic.path,graphic.x,graphic.y,graphic.w,graphic.h);
         if(graphic.isSelected){
             context.lineWidth = 5;
         }else{
@@ -75,7 +80,7 @@ function canvasClick(mouseX, mouseY){
 
     for(var i=graphics.length-1; i>=0;i--){
         var graphic = graphics[i];
-        if(clickX-graphic.x>=0&&clickX-graphic.x<=166&&clickY-graphic.y>=0&&clickY-graphic.y<=151)
+        if(clickX-graphic.x>=0&&clickX-graphic.x<=graphic.w&&clickY-graphic.y>=0&&clickY-graphic.y<=graphic.h)
         {
             if(previousSelected !=null){
                 previousSelected.isSelected = false;
@@ -94,6 +99,59 @@ function canvasClick(mouseX, mouseY){
             return;
         }
     }
+}
+
+function enlarge(){
+    //console.log(graphics.length+"77777777777777777777777777777777777777")
+    for(var i = graphics.length-1; i>=0;i--){
+        console.log(graphics[i].isSelected)
+        if(graphics[i].isSelected){
+
+            if(graphics[i].scal<0.8){
+                console.log("dadadadadadadadaaadadada")
+                console.log(graphics[i].path)
+                graphics[i].scal +=0.1;
+
+                graphics[i].x =graphics[i].x-(0.1*graphics[i].width)*0.5;
+                graphics[i].y =graphics[i].y-(graphics[i].height*0.1)*0.5;
+                graphics[i].w =graphics[i].width*(1+graphics[i].scal);
+                graphics[i].h =graphics[i].height*(1+graphics[i].scal);
+                break;
+            }
+        }
+    }
+    drawGraphics();
+}
+
+function reduce(){
+    for(var i = graphics.length-1; i>=0;i--){
+        if(graphics[i].isSelected){
+
+            if(graphics[i].scal>-0.5){
+                console.log("dadadadadadadadaaadadada")
+                console.log(graphics[i].path)
+                graphics[i].scal -=0.1;
+
+                graphics[i].x =graphics[i].x+(0.1*graphics[i].width)*0.5;
+                graphics[i].y =graphics[i].y+(graphics[i].height*0.1)*0.5;
+                graphics[i].w =graphics[i].width*(1+graphics[i].scal);
+                graphics[i].h =graphics[i].height*(1+graphics[i].scal);
+                break;
+            }
+        }
+    }
+    drawGraphics();
+}
+
+function resize(){
+    for(var i = graphics.length-1; i>=0;i--){
+        if(graphics[i].isSelected){
+            graphics[i].scal=0;
+            graphics[i].w = graphics[i].width;
+            graphics[i].h = graphics[i].height;
+        }
+    }
+    drawGraphics();
 }
 
 function background(color){
