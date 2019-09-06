@@ -11,6 +11,8 @@ Window {
     width: 1920;
     height: 1080;
     title: qsTr("交互重构");
+    property var n;
+
     function selectInterface(selectIn)
     {
         vMain.visible = false;
@@ -24,6 +26,7 @@ Window {
             break
         }
     }
+
 
     MainInterface{
         id: vMain
@@ -39,30 +42,7 @@ Window {
         visible: false;
     }
 
-    Window{
-        id: subWindow1;
-        visible: false;
-        width: 690;
-        height: 370;
-        flags: Qt.CursorShape |  Qt.WindowSystemMenuHint |Qt.FramelessWindowHint
-        SubWin1{
-            visible: true;
-            anchors.fill: parent;
-        }
 
-    }
-
-    Window{
-        id: subWindow2;
-        visible: false;
-        width: 690;
-        height: 370;
-        flags: Qt.CursorShape |  Qt.WindowSystemMenuHint |Qt.FramelessWindowHint
-        SubWin2{
-            visible: true;
-            anchors.fill: parent;
-        }
-    }
 
 
 }

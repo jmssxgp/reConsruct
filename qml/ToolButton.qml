@@ -59,7 +59,17 @@ Rectangle{
             if(nIndex==0){
                 filesave.open();
             }
-
+            if(nIndex==-1){
+                filesave2.open();
+            }
+            if(nIndex==-2){
+                if(drawPattern.scale + 0.05<1.5)
+                    drawPattern.scale += 0.05;
+            }
+            if(nIndex==-3){
+                if(drawPattern.scale - 0.05>0.5)
+                    drawPattern.scale -= 0.05;
+            }
         }
 
     }
@@ -103,6 +113,19 @@ Rectangle{
         onAccepted: {
             if(fileUrl!==""){
                 draw.save(fileUrl.toString().substring(8,fileUrl.length));
+
+            }
+        }
+
+    }
+    FileDialog{
+        id: filesave2;
+        selectExisting: false;
+        folder: shortcuts.desktop;
+        nameFilters: ["image files(*.jpg)"];
+        onAccepted: {
+            if(fileUrl!==""){
+                drawPattern.save(fileUrl.toString().substring(8,fileUrl.length));
 
             }
         }

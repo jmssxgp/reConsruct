@@ -19,6 +19,10 @@ SOURCES += main.cpp \
 RESOURCES += qml.qrc \
     image.qrc
 
+
+INCLUDEPATH += C:\Qt\opencv\build\include
+LIBS += C:\Qt\opencv\install\bin\libopencv_*.dll
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 

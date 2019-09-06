@@ -2,11 +2,17 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.4
+import "drawPattern.js" as Pattern
 
 Rectangle{
     id: sub_1;
     color: "transparent";
+    property var sX;
+    property var sY;
+    property var sN;
+    property var sK;
 
+    signal tran(var t);
 
     Rectangle{
         id: sub_1_top;
@@ -92,7 +98,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 165;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 5; top: 20}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -117,7 +123,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 275;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 0; top: 4}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -142,7 +148,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 385;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 40; top: 1000}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -158,6 +164,7 @@ Rectangle{
                 }
             }
 
+
         }
         TextField{
             id: sub_1_param_Y;
@@ -167,7 +174,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 495;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 0; top: 20}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -198,6 +205,22 @@ Rectangle{
 
             backgroundImg: "image/islamic star/确认.png";
             cIndex: 0;
+            onConf: {
+                console.log(sub_1_param_K.text)
+                if(sub_1_param_X>=40)
+                sX = sub_1_param_X.text
+                else
+                    sX = 60;
+                sY =sub_1_param_Y.text
+                if(sub_1_param_N.text>=5)
+                sN =sub_1_param_N.text
+                else{
+                    sN = 6;
+                }
+
+                sK =sub_1_param_K.text
+                tran(0);
+            }
         }
     }
 }

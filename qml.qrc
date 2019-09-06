@@ -14,8 +14,8 @@
         <file>qml/StatusBar.qml</file>
         <file>qml/ImageSelect.qml</file>
         <file>qml/Sliderbar.qml</file>
-        <file>qml/DrawGraphic.qml</file>
         <file>qml/imagepaint.js</file>
         <file>qml/PatternTree.qml</file>
+        <file>qml/drawPattern.js</file>
     </qresource>
 </RCC>

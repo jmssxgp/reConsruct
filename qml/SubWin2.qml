@@ -7,6 +7,12 @@ Rectangle{
     id: sub_2;
     color: "transparent";
 
+    property var sX;
+    property var sY;
+    property var sN;
+    property var sK;
+    property var sG;
+    signal tran(var c);
     Rectangle{
         id: sub_2_top;
         width: 690;
@@ -97,7 +103,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 135;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 5; top: 20}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -122,7 +128,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 245;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 0; top: 4}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -147,7 +153,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 355;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 0; top: 3}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -172,7 +178,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 467;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 40; top: 1000}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -196,7 +202,7 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 578;
 
-            validator: IntValidator{bottom: 1; top: 20}//输入内容限制
+            validator: IntValidator{bottom: 40; top: 200}//输入内容限制
             font: {
                 font.pixelSize=20;
                 font.family="simplex";
@@ -227,6 +233,24 @@ Rectangle{
 
             backgroundImg: "image/islamic star/确认.png";
             cIndex: 1;
+            onConf: {
+                console.log(sub_2_param_K.text)
+                if(sub_2_param_X.text>=40)
+                sX = sub_2_param_X.text
+                else{
+                    sX =60;
+                }
+
+                sY =sub_2_param_Y.text
+                if(sub_2_param_N.text>=5)
+                    sN =sub_2_param_N.text
+                else{
+                    sN = 6;
+                }
+                sG = sub_2_param_G.text;
+                sK =sub_2_param_K.text
+                tran(0);
+            }
         }
     }
 }

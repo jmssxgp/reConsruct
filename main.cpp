@@ -2,9 +2,11 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include "pathmodel.h"
+#include <opencv2/opencv.hpp>
 
 int main(int argc, char *argv[])
 {
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
@@ -17,4 +19,5 @@ int main(int argc, char *argv[])
         return -1;
 
     return app.exec();
+    //return 0;
 }

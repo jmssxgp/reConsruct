@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
+import "drawPattern.js" as Pattern
+
 Rectangle{
     id: vMain;
     color: "transparent";
@@ -239,19 +241,50 @@ Rectangle{
     /**生成结果显示**********************************************************************/
     Rectangle{
         id: imageShow;
-        color: "transparent";
+        //color: "transparent";
 
-        width: 976;
+        width: 977;
         height: 565;
         anchors.left: parent.left;
         anchors.leftMargin: 474;
         anchors.top: parent.top;
         anchors.topMargin: 236;
+        clip: true;
+        Canvas{
+            id: drawPattern;
+            width: 3000;
+            height: 2000;
+            scale: 1;
+            x:-1011.5;
+            y:-717.5;
+            property var sx;
+            property var sy;
+            property var sn;
+            property var sg;
+            property var sk;
+            property var flag; //判断传进来的参数用来绘制什么。
+            onPaint: {
+                if(flag === 0){
+                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+                    Pattern.aidStar(sx,sy,sn,sk);
+                }else if(flag===1){
+                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+                    Pattern.aidRosette(sx,-sy,sn,sg,sk);
 
-        Image {
-            id: imageGenerate;
-            source: "image/pattern1/Islanmic rosette.png";   //应设置为变量
+                }
+            }
+
+        }
+        MouseArea{
             anchors.fill: parent;
+            acceptedButtons: Qt.MidButton;
+            onWheel: {
+                var scale = (wheel.angleDelta.y/120)*0.05;
+                //console.log(scale)
+                if(drawPattern.scale + scale>0.5&&drawPattern.scale + scale<1.5)
+                    drawPattern.scale += scale;
+                console.log(drawPattern.scale)
+            }
         }
     }
 
@@ -336,6 +369,7 @@ Rectangle{
                 pressedImage: "image/pattern1/保存-点击.png";
                 hoverImage: "image/pattern1/保存-点击.png";
                 state: "normal";
+                nIndex: -1;
             }
             ToolButton{
                 id:tool2;
@@ -345,6 +379,7 @@ Rectangle{
                 pressedImage: "image/pattern1/放大-点击.png";
                 hoverImage: "image/pattern1/放大-点击.png";
                 state: "normal";
+                nIndex: -2;
             }
             ToolButton{
                 id:tool3;
@@ -354,6 +389,7 @@ Rectangle{
                 pressedImage: "image/pattern1/缩小-点击.png"
                 hoverImage: "image/pattern1/缩小-点击.png";
                 state: "normal";
+                nIndex: -3
             }
             ToolButton{
                 id:tool4;
@@ -363,6 +399,7 @@ Rectangle{
                 pressedImage: "image/pattern1/重置-点击.png";
                 hoverImage: "image/pattern1/重置-点击.png";
                 state: "normal";
+                nIndex: -4;
             }
             ToolButton{
                 id:tool5;
@@ -373,6 +410,15 @@ Rectangle{
                 pressedImage: "image/pattern1/关闭-点击.png";
                 hoverImage: "image/pattern1/关闭-点击.png";
                 state: "normal";
+                nIndex: 4;
+                onBack: {
+                    console.log("777777777777")
+                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+
+                    Pattern.clearCanvas();
+                    drawPattern.flag=3;
+                    drawPattern.requestPaint();
+                }
             }
         }
     }
@@ -560,4 +606,64 @@ Rectangle{
                   console.log("set success");
               }
           }
+
+        /***子窗口**************************************************************/
+    Rectangle{
+        id: subWindow1;
+        visible: false;
+        width: 690;
+        height: 370;
+        x:615;
+        y:355;
+        SubWin1{
+            visible: true;
+            anchors.fill: parent;
+
+            onTran: {
+                drawPattern.sx = sX;
+                drawPattern.flag = 0;
+                drawPattern.sy = sY;
+                drawPattern.sn = sN;
+                drawPattern.sk = sK;
+                drawPattern.requestPaint();
+            }
+        }
+
+    }
+
+    Rectangle{
+        id: subWindow2;
+        visible: false;
+        width: 690;
+        height: 370;
+        x:615;
+        y:355;
+        SubWin2{
+            visible: true;
+            anchors.fill: parent;
+
+            onTran: {
+                drawPattern.sx = sX;
+                drawPattern.flag = 1;
+                drawPattern.sy = sY;
+                drawPattern.sn = sN;
+                drawPattern.sk = sK;
+                drawPattern.sg = sG;
+                drawPattern.requestPaint();
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,12 @@
 import QtQuick 2.0
-
+import "drawPattern.js" as Pattern
 Rectangle{
     id: confirm;
     color: "transparent";
     property var backgroundImg: "";
     property var cIndex: 0;
+
+    signal conf(var c);
 
     Image {
         id: button_image
@@ -29,9 +31,11 @@ Rectangle{
         onClicked: {
             if(cIndex === 0){
                 subWindow1.visible = false; //隐藏子窗口
+                conf(1);
             }
             if(cIndex === 1){
                 subWindow2.visible = false;
+                 conf(2);
             }
         }
     }
