@@ -122,7 +122,7 @@ Rectangle{
         id: filesave2;
         selectExisting: false;
         folder: shortcuts.desktop;
-        nameFilters: ["image files(*.jpg)"];
+        nameFilters: ["image files(*.png)"];
         onAccepted: {
             if(fileUrl!==""){
                 drawPattern.save(fileUrl.toString().substring(8,fileUrl.length));

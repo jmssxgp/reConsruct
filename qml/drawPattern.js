@@ -20,6 +20,7 @@ function drawStar(X,Y,N,K,w,h){
 
     for(var i=0; i<N;i++){
         context.beginPath();
+        context.lineWidth = 2;
         context.moveTo(X,Y);
         context.lineTo(kx,ky);
         context.moveTo(X,Y);
@@ -39,6 +40,7 @@ function drawRosette(X,Y,N,G,K,w,h){
 
     for(var i=0; i<N;i++){
         context.beginPath();
+        context.lineWidth = 2;
         context.moveTo(ax,Y);
         context.lineTo(X,Y);
         context.lineTo(kx,ky);

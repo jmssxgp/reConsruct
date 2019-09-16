@@ -28,7 +28,7 @@ Rectangle{
 
         Text {
             id: title2
-            text: qsTr("交互几何重构")
+            text: qsTr("交互几何纹样重构")
             anchors.centerIn: parent;
             anchors.topMargin: 18;
 

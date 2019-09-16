@@ -22,7 +22,7 @@ Rectangle{
 
         Text {
             id: title1
-            text: qsTr("交互几何重构")
+            text: qsTr("交互几何纹样重构")
             anchors.centerIn: parent;
             anchors.topMargin: 18;
 
@@ -305,37 +305,32 @@ Rectangle{
             spacing: 0;
             anchors.top: parent.top;
 
-            Button{
+            ReButton{
                 id: reButton1;
                 width: 140;
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮1.png";
-                txt: "重构按钮1";
-                nIndex: -1;
+                txt: "自定义Star";
+                nIndex: 5;
+                state: "normal";
             }
-            Button{
+            ReButton{
                 id: reButton2;
                 width: 140;
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮2.png";
-                txt: "重构按钮2";
-                nIndex: -1;
+                txt: "自定义Rosette";
+                nIndex: 6;
+                state: "normal";
             }
-            Button{
+            ReButton{
                 id: reButton3;
                 width: 140;
                 height: 98;
                 backgroundImag: "image/pattern1/重构按钮3.png";
-                txt: "重构按钮3";
+                txt: "图案嵌入";
                 nIndex: -1;
-            }
-            Button{
-                id: reButton4;
-                width: 140;
-                height: 98;
-                backgroundImag: "image/pattern1/重构按钮4.png";
-                txt: "重构按钮4";
-                nIndex: -1;
+                state:"normal";
             }
         }
     }
@@ -400,6 +395,9 @@ Rectangle{
                 hoverImage: "image/pattern1/重置-点击.png";
                 state: "normal";
                 nIndex: -4;
+                onBack: {
+                    drawPattern.scale = 1;
+                }
             }
             ToolButton{
                 id:tool5;
