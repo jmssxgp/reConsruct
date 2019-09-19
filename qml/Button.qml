@@ -55,6 +55,7 @@ Rectangle{
         {
             vButton.state = "normal";
             selcect(selcetIn);
+            console.log(nIndex)
         }
         onEntered:
         {
@@ -68,25 +69,15 @@ Rectangle{
             {
                 vButton.state = "normal";
             }
+
         }
         onClicked: {
-            if(nIndex===0){
-                main_W.visibility =Window.Minimized;
-            }
-            if(nIndex === 1)
-            {
-                main_W.visibility === Window.Windowed ?
-                            main_W.visibility = Window.Maximized :main_W.visibility = Window.Windowed;
+            if(nIndex===10){
 
             }
 
-            if(nIndex === 2)
+            if(nIndex===2){
                 Qt.quit();
-            if(nIndex === 3){
-                selcetIn = 0;
-            }
-            if(nIndex === 4){
-                selcetIn = 1;
             }
         }
     }

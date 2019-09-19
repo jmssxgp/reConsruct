@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import com.test.PathModel 1.0
+import QtQuick.Window 2.0
 import QtQuick.Dialogs 1.2
 import "imagepaint.js" as Painter
 
@@ -332,15 +333,14 @@ Rectangle{
                 spacing: 0
                 delegate: Rectangle{
                     width: 435;
-                    height: 2000;
+                    height: 1000;
                     color: "transparent";
-                    PatternTree{
-                        width: 100;
-                        height: 60;
-                        color: "black"
+                    PatternTreeView{
+                        id: patterntreeview;
+                        anchors.top: parent.top;
+                        anchors.topMargin: 60;
                         anchors.left: parent.left;
-                        path: "F:/master/重构软件/交互几何重构/模式2/1x";
-                        txt:"TEST"
+                        anchors.leftMargin: 160;
                     }
                 }
             }

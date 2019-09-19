@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
+import com.test.PathModel 1.0
 import "drawPattern.js" as Pattern
 
 Rectangle{
@@ -7,6 +8,10 @@ Rectangle{
     color: "transparent";
     /**顶栏*************************************************************************
       */
+
+    property var islamic_star_image_name: "";
+    property var islamic_rosette_image_name: "";
+
     Rectangle{
         id: topHurdle;
         color: "transparent";
@@ -33,6 +38,7 @@ Rectangle{
             font.bold: true;
         }
 
+
         Row{
             id: titleButtonRow;
 
@@ -52,7 +58,7 @@ Rectangle{
                 backgroundImag: "image/pattern1/最小化-未选中.png"
                 sHoverImage: "image/pattern1/最小化.png"
                 state: "normal";
-                nIndex: 0;
+                nIndex: 10;
             }
             Button{
                 id: max;
@@ -77,10 +83,10 @@ Rectangle{
         MouseArea
         {
             anchors.right: parent.right;
-            anchors.rightMargin: 120;
+            anchors.rightMargin: 400;
 
             height: parent.height;
-            width: parent.width - 120;
+            width: parent.width - 400;
 
 
             acceptedButtons: Qt.LeftButton //只处理鼠标左键
@@ -108,7 +114,7 @@ Rectangle{
             }
 
 
-        }
+       }
     }
 
     /** 底*************************************************************************
@@ -221,8 +227,9 @@ Rectangle{
 
                 width: parent.width;
                 height: 190;
-                backgroundImage: "image/pattern1/Islanmic star.png";
+                backgroundImage: islamic_star_image_name;
                 txt:"islamic star";
+                path: "F:/master/新建文件夹 (2)";
                 cIndex: 0;
 
             }
@@ -232,12 +239,49 @@ Rectangle{
 
                 width: parent.width;
                 height: 190;
-                backgroundImage: "image/pattern1/Islanmic rosette-1.png";
+                backgroundImage: islamic_rosette_image_name;
                 txt:"islamic rosette";
+                path:"F:/master/新建文件夹 (2)";
                 cIndex: 1;
             }
         }
     }
+
+    /*****************************定时器刷新展示图片****************************/
+
+    Timer{
+        id:timer_for_star;
+        property var count: 0;
+        interval: 1000;
+        repeat: true;
+        triggeredOnStart: true;
+
+        onTriggered: {
+            if(count<graphic1.n){
+                islamic_star_image_name="file:///"+graphic1.l[count];
+                count++;
+            }else{
+                count=0;
+            }
+        }
+    }
+    Timer{
+        id:timer_for_rosette;
+        property var count: 0;
+        interval: 1000;
+        repeat: true;
+        triggeredOnStart: true;
+
+        onTriggered: {
+            if(count<graphic2.n){
+                islamic_rosette_image_name="file:///"+graphic2.l[count];
+                count++;
+            }else{
+                count=0;
+            }
+        }
+    }
+
     /**生成结果显示**********************************************************************/
     Rectangle{
         id: imageShow;
