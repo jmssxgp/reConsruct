@@ -1,6 +1,8 @@
 //存放图片左上角顶点坐标和路径
 var graphics = [];
 //
+var now = -1;
+
 var canvas;
 
 var context;
@@ -27,18 +29,89 @@ function Graphic(x,y,path,w,h){
     this.isSelected = false;
 }
 
+function Queue(){
+    var preserve = [];
+
+    this.push = function(element){   //队列中仅保存最近的五个操作
+        if(now!==preserve.length-1){
+            for(var i=now+1;i<preserve.length;i++){
+                preserve.pop();
+            }
+        }
+
+        if(preserve.length<5){
+            preserve.push(element);
+        }else{
+            preserve.shift();
+            preserve.push(element);
+        }
+        now = preserve.length-1;
+        for(var i=0; i<preserve.length;i++){
+            console.log(preserve[i]);
+        }
+    }
+
+    this.removeFromPos = function(index){ //返回某个操作后，又进行了新操作，删除过去的后续操作
+        for(var i=0;i<4-index;i++){
+            preserve.pop();
+        }
+    }
+
+    this.getByIndex = function(index){
+        return preserve[index];
+    }
+
+    this.length = function(){
+        return preserve.length;
+    }
+
+}
+
+var queue = new Queue();
+
+function back_one_step(){
+
+    if(now>0){
+        now--;
+        graphics = queue.getByIndex(now);
+
+        drawGraphics();
+    }
+}
+
+function forward_one_step(){
+    if(now<queue.length()-1){
+        now++;
+        graphics = queue.getByIndex(now);
+        drawGraphics();
+    }
+}
+
+
+
+
 //添加图片
 function addGraphic(x,y,path,w,h){
     var graphicpath = path;
 
     var graphic = new Graphic(x,y,graphicpath,w,h);
+    //图片数组添加图片属性
     graphics.push(graphic);
+    //操作数组添加当前操作
+    var temp = graphics.slice(0);
+    queue.push(temp);
+
     drawGraphics();
     console.log(graphics.length)
 }
 //重置
 function clearCanvas(){
     graphics = [];
+
+    //操作数组添加当前操作
+    var temp = graphics.slice(0);
+    queue.push(temp);
+
     backimg = "";
     backcolor = "#ffffff";
     drawGraphics();
@@ -48,7 +121,7 @@ function drawGraphics(){
     //context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = backcolor;
     context.fillRect(0,0,canvas.width, canvas.height);
-    console.log("draw start");
+    //console.log("draw start");
 
     if(backimg!=""){
         canvas.loadImage(backimg);
@@ -120,6 +193,9 @@ function enlarge(){
             }
         }
     }
+    //操作数组添加当前操作
+    var temp = graphics.slice(0);
+    queue.push(temp);
     drawGraphics();
 }
 
@@ -140,6 +216,9 @@ function reduce(){
             }
         }
     }
+    //操作数组添加当前操作
+    var temp = graphics.slice(0);
+    queue.push(temp);
     drawGraphics();
 }
 
@@ -151,6 +230,9 @@ function resize(){
             graphics[i].h = graphics[i].height;
         }
     }
+    //操作数组添加当前操作
+    var temp = graphics.slice(0);
+    queue.push(temp);
     drawGraphics();
 }
 
@@ -167,6 +249,8 @@ function back(img){
 var isDragging = false;
 
 function stopDragging() {
+    //操作数组添加当前操作
+    queue.push(graphics)
     isDragging = false;
 }
 
@@ -179,7 +263,7 @@ function dragGraphic(mouseX, mouseY){
 
             previousSelected.x = x - offsetX;
             previousSelected.y = y - offsetY;
-
+            console.log("拖拽")
             drawGraphics();
         }
     }

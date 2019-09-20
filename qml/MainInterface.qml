@@ -190,6 +190,11 @@ Rectangle{
                 state: "normal";
                 onSelcect: {
                     main_W.selectInterface(1);
+                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+
+                    Pattern.clearCanvas();
+                    drawPattern.flag=3;
+                    drawPattern.requestPaint();
                 }
             }
         }
@@ -694,6 +699,19 @@ Rectangle{
                 drawPattern.requestPaint();
             }
         }
+    }
+
+
+    function timer_util(bool){
+        if(bool){
+
+            timer_for_rosette.start();
+            timer_for_star.start();
+        }else{
+            timer_for_rosette.stop();
+            timer_for_star.stop();
+        }
+
     }
 }
 

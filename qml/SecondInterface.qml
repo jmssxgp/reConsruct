@@ -172,6 +172,10 @@ Rectangle{
 
                 onSelcect: {
                     main_W.selectInterface(0);
+                    model01.clear();
+                    Painter.setContext(draw.getContext("2d"), draw);
+                    draw.requestPaint();
+                    Painter.clearCanvas();
                 }
             }
 
@@ -527,6 +531,38 @@ Rectangle{
                         Painter.reduce();
                     }
                 }
+//                ToolButton{
+//                    id:tool6;
+//                    width: 36;
+//                    height: 36;
+//                    backgroundImage: "image/tool/后退-未选中.png";
+//                    pressedImage: "image/tool/后退.png";
+//                    hoverImage: "image/tool/后退.png";
+//                    state: "normal";
+//                    nIndex: 3;
+//                    onBack: {
+//                        Painter.setContext(draw.getContext("2d"), draw);
+//                        draw.requestPaint();
+//                        Painter.back_one_step();
+//                    }
+
+//                }
+//                ToolButton{
+//                    id:tool7;
+//                    width: 36;
+//                    height: 36;
+//                    backgroundImage: "image/tool/前进-未选中.png";
+//                    pressedImage: "image/tool/前进.png";
+//                    hoverImage: "image/tool/前进.png";
+//                    state: "normal";
+//                    nIndex: 3;
+//                    onBack: {
+//                        Painter.setContext(draw.getContext("2d"), draw);
+//                        draw.requestPaint();
+//                        Painter.forward_one_step();
+//                    }
+
+//                }
                 ToolButton{
                     id:tool4;
                     width: 36;
@@ -629,6 +665,7 @@ Rectangle{
                     Image {
                         anchors.fill: parent;
                         source: ima;
+                        sourceSize: Qt.size(800,600);
                     }
                     MouseArea{
                         anchors.fill: parent;

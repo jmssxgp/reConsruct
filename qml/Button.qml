@@ -76,6 +76,7 @@ Rectangle{
 
             }
 
+
             if(nIndex===2){
                 Qt.quit();
             }

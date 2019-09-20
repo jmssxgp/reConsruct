@@ -20,9 +20,11 @@ Window {
         switch (selectIn){
         case 0 :
             vMain.visible = true;
+            vMain.timer_util(true);
             break;
         case 1 :
             vSecond.visible = true;
+            vMain.timer_util(false);
             break
         }
     }
@@ -31,7 +33,6 @@ Window {
     MainInterface{
         id: vMain
         anchors.fill: parent;
-
         visible: true;
     }
 

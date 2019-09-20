@@ -78,5 +78,9 @@
         <file>qml/image/barmenu/退出程序-2.png</file>
         <file>qml/image/barmenu/文件-1.png</file>
         <file>qml/image/barmenu/文件2.png</file>
+        <file>qml/image/tool/后退.png</file>
+        <file>qml/image/tool/后退-未选中.png</file>
+        <file>qml/image/tool/前进.png</file>
+        <file>qml/image/tool/前进-未选中.png</file>
     </qresource>
 </RCC>
