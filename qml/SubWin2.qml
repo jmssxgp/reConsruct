@@ -52,172 +52,289 @@ Rectangle{
             anchors.fill: parent;
         }
 
-        Row{
+        Column{
             width: 427;
             height: 25;
             anchors.top: parent.top;
-            anchors.topMargin: 76;
+            anchors.topMargin: 30;
             anchors.left: parent.left;
-            anchors.leftMargin: 110;
+            anchors.leftMargin: 140;
 
             z: 0.2;
-            spacing: 65;
-
+            spacing: 25;
             ParamInput{
-                width: 47;
-                height: parent.height;
+                width: parent.width;
+                height: 17;
 
                 name: "N";
             }
             ParamInput{
-                width: 47;
-                height: parent.height;
+                width: parent.width;
+                height: 17;
 
                 name: "K";
             }
             ParamInput{
-                width: 47;
-                height: parent.height;
+                width: parent.width;
+                height: 17;
 
                 name: "G";
             }
             ParamInput{
-                width: 47;
-                height: parent.height;
+                width: parent.width;
+                height: 17;
 
                 name: "X";
             }
             ParamInput{
-                width: 47;
-                height: parent.height;
+                width: parent.width;
+                height: 17;
 
                 name: "Y";
             }
         }
-        /**参数输入**********************************************************/
-        TextField{
-            id: sub_2_param_N;
+
+
+        /**参数滑动**********************************************************/
+        Slider{
+            id:nGrooveAndHandle;
             z:0.2;
-            anchors.top:parent.top;
-            anchors.topMargin: 76;
+            anchors.top: parent.top;
+            anchors.topMargin: 36;
             anchors.left: parent.left;
-            anchors.leftMargin: 135;
-
-            validator: IntValidator{bottom: 5; top: 20}//输入内容限制
-            font: {
-                font.pixelSize=20;
-                font.family="simplex";
+            anchors.leftMargin: 180;
+            width:300;
+            height: 17;
+            minimumValue: 6
+            maximumValue: 20;
+            stepSize: 2;
+            value: 0;
+            onValueChanged:
+            {
+                nname.text =  value;
             }
-
-            style: TextFieldStyle{
-                textColor: "black";
-                background: Rectangle{
-                    implicitHeight: 25;
-                    implicitWidth: 30;
-                    color: "#ffffff";
-                    radius: 3;
+            style: SliderStyle{
+                groove:Rectangle{
+                    implicitHeight: 8;
+                    implicitWidth:300;
+                    color: "gray";
+                    radius: 4;
                 }
-            }
-
-        }
-        TextField{
-            id: sub_2_param_K;
-            z:0.2;
-            anchors.top:parent.top;
-            anchors.topMargin: 76;
-            anchors.left: parent.left;
-            anchors.leftMargin: 245;
-
-            validator: IntValidator{bottom: 0; top: 4}//输入内容限制
-            font: {
-                font.pixelSize=20;
-                font.family="simplex";
-            }
-
-            style: TextFieldStyle{
-                textColor: "black";
-                background: Rectangle{
-                    implicitHeight: 25;
-                    implicitWidth: 30;
-                    color: "#ffffff";
-                    radius: 3;
-                }
-            }
-
-        }
-        TextField{
-            id: sub_2_param_G;
-            z:0.2;
-            anchors.top:parent.top;
-            anchors.topMargin: 76;
-            anchors.left: parent.left;
-            anchors.leftMargin: 355;
-
-            validator: IntValidator{bottom: 0; top: 3}//输入内容限制
-            font: {
-                font.pixelSize=20;
-                font.family="simplex";
-            }
-
-            style: TextFieldStyle{
-                textColor: "black";
-                background: Rectangle{
-                    implicitHeight: 25;
-                    implicitWidth: 30;
-                    color: "#ffffff";
-                    radius: 3;
-                }
-            }
-
-        }
-        TextField{
-            id: sub_2_param_X;
-            z:0.2;
-            anchors.top:parent.top;
-            anchors.topMargin: 76;
-            anchors.left: parent.left;
-            anchors.leftMargin: 467;
-
-            validator: IntValidator{bottom: 40; top: 1000}//输入内容限制
-            font: {
-                font.pixelSize=20;
-                font.family="simplex";
-            }
-
-            style: TextFieldStyle{
-                textColor: "black";
-                background: Rectangle{
-                    implicitHeight: 25;
-                    implicitWidth: 30;
-                    color: "#ffffff";
-                    radius: 3;
+                handle: Rectangle{
+                    anchors.centerIn: parent;
+                    color: control.pressed?"white":"lightgray";
+                    width: 14;
+                    height: 14;
+                    radius: 12;
                 }
             }
         }
-        TextField{
-            id: sub_2_param_Y;
+
+        Slider{
+            id:kGrooveAndHandle;
             z:0.2;
-            anchors.top:parent.top;
-            anchors.topMargin: 76;
+            anchors.top: parent.top;
+            anchors.topMargin: 78;
             anchors.left: parent.left;
-            anchors.leftMargin: 578;
-
-            validator: IntValidator{bottom: 40; top: 200}//输入内容限制
-            font: {
-                font.pixelSize=20;
-                font.family="simplex";
+            anchors.leftMargin: 180;
+            width:300;
+            height: 17;
+            minimumValue: 0
+            maximumValue: 5;
+            stepSize: 1;
+            value: 0;
+            onValueChanged:
+            {
+                kname.text =  value;
             }
-
-            style: TextFieldStyle{
-                textColor: "black";
-                background: Rectangle{
-                    implicitHeight: 25;
-                    implicitWidth: 30;
-                    color: "#ffffff";
-                    radius: 3;
+            style: SliderStyle{
+                groove:Rectangle{
+                    implicitHeight: 8;
+                    implicitWidth:300;
+                    color: "gray";
+                    radius: 4;
+                }
+                handle: Rectangle{
+                    anchors.centerIn: parent;
+                    color: control.pressed?"white":"lightgray";
+                    width: 14;
+                    height: 14;
+                    radius: 12;
                 }
             }
         }
+
+        Slider{
+            id:gGrooveAndHandle;
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 120;
+            anchors.left: parent.left;
+            anchors.leftMargin: 180;
+            width:300;
+            height: 17;
+            minimumValue: 0;
+            maximumValue: 10;
+            stepSize: 1;
+            value: 0;
+            onValueChanged:
+            {
+                gname.text =  value;
+            }
+            style: SliderStyle{
+                groove:Rectangle{
+                    implicitHeight: 8;
+                    implicitWidth:300;
+                    color: "gray";
+                    radius: 4;
+                }
+                handle: Rectangle{
+                    anchors.centerIn: parent;
+                    color: control.pressed?"white":"lightgray";
+                    width: 14;
+                    height: 14;
+                    radius: 12;
+                }
+            }
+        }
+
+        Slider{
+            id:xGrooveAndHandle;
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 162;
+            anchors.left: parent.left;
+            anchors.leftMargin: 180;
+            width:300;
+            height: 17;
+            minimumValue: nGrooveAndHandle.value*10;
+            maximumValue: nGrooveAndHandle.value*20+200;
+            stepSize: 1;
+            value: 0;
+            onValueChanged:
+            {
+                xname.text =  value;
+            }
+            style: SliderStyle{
+                groove:Rectangle{
+                    implicitHeight: 8;
+                    implicitWidth:300;
+                    color: "gray";
+                    radius: 4;
+                }
+                handle: Rectangle{
+                    anchors.centerIn: parent;
+                    color: control.pressed?"white":"lightgray";
+                    width: 14;
+                    height: 14;
+                    radius: 12;
+                }
+            }
+        }
+
+        Slider{
+            id:yGrooveAndHandle;
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 204;
+            anchors.left: parent.left;
+            anchors.leftMargin: 180;
+            width:300;
+            height: 17;
+            minimumValue: 20
+            maximumValue: nGrooveAndHandle.value*20;
+            stepSize: 1;
+            value: 0;
+            onValueChanged:
+            {
+                yname.text =  value;
+            }
+            style: SliderStyle{
+                groove:Rectangle{
+                    implicitHeight: 8;
+                    implicitWidth:300;
+                    color: "gray";
+                    radius: 4;
+                }
+                handle: Rectangle{
+                    anchors.centerIn: parent;
+                    color: control.pressed?"white":"lightgray";
+                    width: 14;
+                    height: 14;
+                    radius: 12;
+                }
+            }
+        }
+        Text {
+            id: nname
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 36;
+            anchors.left: parent.left;
+            anchors.leftMargin: 500;
+            font.pixelSize: 22
+            font.letterSpacing: 1;
+            text: "0";
+        }
+
+        Text {
+            id: kname
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 78;
+            anchors.left: parent.left;
+            anchors.leftMargin: 500;
+            font.pixelSize: 22
+            font.letterSpacing: 1;
+            text: "0";
+        }
+        Text {
+            id: gname
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 120;
+            anchors.left: parent.left;
+            anchors.leftMargin: 500;
+            font.pixelSize: 22
+            font.letterSpacing: 1;
+            text: "0";
+        }
+
+        Text {
+            id: xname
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 162;
+            anchors.left: parent.left;
+            anchors.leftMargin: 500;
+            font.pixelSize: 22
+            font.letterSpacing: 1;
+            text: "0";
+        }
+
+        Text {
+            id: yname
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            z:0.2;
+            anchors.top: parent.top;
+            anchors.topMargin: 204;
+            anchors.left: parent.left;
+            anchors.leftMargin: 500;
+            font.pixelSize: 22
+            font.letterSpacing: 1;
+            text: "0";
+        }
+
+
 
 //*********************确定按钮********************************************************/
         ConfirmButton{
@@ -229,26 +346,16 @@ Rectangle{
             anchors.left: parent.left;
             anchors.leftMargin: 244;
             anchors.top: parent.top;
-            anchors.topMargin: 203;
+            anchors.topMargin: 233;
 
             backgroundImg: "image/islamic star/确认.png";
             cIndex: 1;
             onConf: {
-                console.log(sub_2_param_K.text)
-                if(sub_2_param_X.text>=40)
-                sX = sub_2_param_X.text
-                else{
-                    sX =60;
-                }
-
-                sY =sub_2_param_Y.text
-                if(sub_2_param_N.text>=5)
-                    sN =sub_2_param_N.text
-                else{
-                    sN = 6;
-                }
-                sG = sub_2_param_G.text;
-                sK =sub_2_param_K.text
+                sX = xGrooveAndHandle.value;
+                sY = yGrooveAndHandle.value;
+                sN = nGrooveAndHandle.value;
+                sG = gGrooveAndHandle.value;
+                sK = kGrooveAndHandle.value;
                 tran(0);
             }
         }

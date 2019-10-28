@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "drawPattern.js" as Pattern
+
 Rectangle{
     id: confirm;
     color: "transparent";

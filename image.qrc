@@ -82,5 +82,14 @@
         <file>qml/image/tool/后退-未选中.png</file>
         <file>qml/image/tool/前进.png</file>
         <file>qml/image/tool/前进-未选中.png</file>
+        <file>qml/image/generate/生成islantic rosette-点击.png</file>
+        <file>qml/image/generate/生成islantic rosette-未选中.png</file>
+        <file>qml/image/generate/生成islantic rosette-移至icon.png</file>
+        <file>qml/image/generate/生成islantic star-点击.png</file>
+        <file>qml/image/generate/生成islantic star-未选中.png</file>
+        <file>qml/image/generate/生成islantic star-移至icon.png</file>
+        <file>qml/image/generate/生成islantic rosette-点击@2x.png</file>
+        <file>qml/image/generate/生成islantic rosette-未选中@2x.png</file>
+        <file>qml/image/generate/生成islantic rosette-移至icon@2x.png</file>
     </qresource>
 </RCC>

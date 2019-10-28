@@ -16,7 +16,6 @@
         <file>qml/Sliderbar.qml</file>
         <file>qml/imagepaint.js</file>
         <file>qml/PatternTree.qml</file>
-        <file>qml/drawPattern.js</file>
         <file>qml/ReButton.qml</file>
         <file>qml/PatternTreeView.qml</file>
     </qresource>

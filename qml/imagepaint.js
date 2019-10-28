@@ -32,14 +32,14 @@ function Graphic(x,y,path,w,h){
 function Queue(){
     var preserve = [];
 
-    this.push = function(element){   //队列中仅保存最近的五个操作
+    this.push = function(element){   //队列中仅保存最近的十个操作
         if(now!==preserve.length-1){
-            for(var i=now+1;i<preserve.length;i++){
+            while(preserve.length>now+1){
                 preserve.pop();
             }
         }
 
-        if(preserve.length<5){
+        if(preserve.length<10){
             preserve.push(element);
         }else{
             preserve.shift();
@@ -52,7 +52,7 @@ function Queue(){
     }
 
     this.removeFromPos = function(index){ //返回某个操作后，又进行了新操作，删除过去的后续操作
-        for(var i=0;i<4-index;i++){
+        for(var i=0;i<10-index;i++){
             preserve.pop();
         }
     }
@@ -71,7 +71,9 @@ var queue = new Queue();
 
 function back_one_step(){
 
+
     if(now>0){
+        console.log("now:"+now);
         now--;
         graphics = queue.getByIndex(now);
 
@@ -98,7 +100,12 @@ function addGraphic(x,y,path,w,h){
     //图片数组添加图片属性
     graphics.push(graphic);
     //操作数组添加当前操作
-    var temp = graphics.slice(0);
+
+    var temp = [];
+    for(var i=0; i<graphics.length;i++){
+        var obj = JSON.parse(JSON.stringify(graphics[i]));
+        temp.push(obj);
+    }
     queue.push(temp);
 
     drawGraphics();
@@ -109,7 +116,7 @@ function clearCanvas(){
     graphics = [];
 
     //操作数组添加当前操作
-    var temp = graphics.slice(0);
+    var temp = [];
     queue.push(temp);
 
     backimg = "";
@@ -168,7 +175,7 @@ function canvasClick(mouseX, mouseY){
             isDragging = true;
 
             drawGraphics();
-            console.log(graphic.path)
+            //console.log(graphic.path)
             return;
         }
     }
@@ -194,7 +201,11 @@ function enlarge(){
         }
     }
     //操作数组添加当前操作
-    var temp = graphics.slice(0);
+    var temp = [];
+    for(var i=0; i<graphics.length;i++){
+        var obj = JSON.parse(JSON.stringify(graphics[i]));
+        temp.push(obj);
+    }
     queue.push(temp);
     drawGraphics();
 }
@@ -217,7 +228,11 @@ function reduce(){
         }
     }
     //操作数组添加当前操作
-    var temp = graphics.slice(0);
+    var temp = [];
+    for(var i=0; i<graphics.length;i++){
+        var obj = JSON.parse(JSON.stringify(graphics[i]));
+        temp.push(obj);
+    }
     queue.push(temp);
     drawGraphics();
 }
@@ -231,7 +246,11 @@ function resize(){
         }
     }
     //操作数组添加当前操作
-    var temp = graphics.slice(0);
+    var temp = [];
+    for(var i=0; i<graphics.length;i++){
+        var obj = JSON.parse(JSON.stringify(graphics[i]));
+        temp.push(obj);
+    }
     queue.push(temp);
     drawGraphics();
 }
@@ -250,7 +269,14 @@ var isDragging = false;
 
 function stopDragging() {
     //操作数组添加当前操作
-    queue.push(graphics)
+    var temp = [];
+    for(var i=0; i<graphics.length;i++){
+        var obj = JSON.parse(JSON.stringify(graphics[i]));
+        temp.push(obj);
+    }
+
+    queue.push(temp);
+    console.log(graphics[0].x);
     isDragging = false;
 }
 
@@ -263,7 +289,7 @@ function dragGraphic(mouseX, mouseY){
 
             previousSelected.x = x - offsetX;
             previousSelected.y = y - offsetY;
-            console.log("拖拽")
+
             drawGraphics();
         }
     }

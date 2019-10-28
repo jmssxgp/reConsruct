@@ -7,8 +7,8 @@ Window {
 
     visible: true;
 
-    flags: Qt.Window|Qt.FramelessWindowHint|Qt.WindowSystemMenuHint|Qt.WindowMinimizeButtonHint|Qt.WindowMaximizeButtonHint;
-    width: 1920;
+    flags: Qt.Window|Qt.FramelessWindowHint;
+    width: 1919;
     height: 1080;
     title: qsTr("交互重构");
     property var n;
@@ -30,6 +30,8 @@ Window {
     }
 
 
+
+
     MainInterface{
         id: vMain
         anchors.fill: parent;
@@ -42,12 +44,6 @@ Window {
 
         visible: false;
     }
-
-//    PatternTreeView{
-//        id: test;
-//        width: 200;
-//        height: 1000;
-//    }
 
 
 

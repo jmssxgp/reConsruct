@@ -1,6 +1,7 @@
 #include <qquickimageprovider.h>
 #include <QImage>
 #include <QPainter>
+#include "externalvar.h"
 
 class ColorImageProvider: public QQuickImageProvider
 {
@@ -21,12 +22,8 @@ public:
         QPixmap pixmap(requestedSize.width()>0?requestedSize.width():width,
                        requestedSize.height()>0?requestedSize.height():height);
 
-        if(id == "imageShow"){
-            QImage img;
-            img = QImage("");
 
-            pixmap = QPixmap::fromImage(img);
-        }
+        pixmap = QPixmap::fromImage(globalImage);
         return pixmap;
     }
 };

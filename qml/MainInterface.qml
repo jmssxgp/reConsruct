@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import com.test.PathModel 1.0
-import "drawPattern.js" as Pattern
+import com.test.PatternProvider 1.0;
 
 Rectangle{
     id: vMain;
@@ -11,7 +11,7 @@ Rectangle{
 
     property var islamic_star_image_name: "";
     property var islamic_rosette_image_name: "";
-
+    property int count: 0;
     Rectangle{
         id: topHurdle;
         color: "transparent";
@@ -27,7 +27,7 @@ Rectangle{
 
         Text {
             id: title1
-            text: qsTr("交互几何纹样重构")
+            text: qsTr("几何纹样风格化重构软件")
             anchors.centerIn: parent;
             anchors.topMargin: 18;
 
@@ -58,7 +58,7 @@ Rectangle{
                 backgroundImag: "image/pattern1/最小化-未选中.png"
                 sHoverImage: "image/pattern1/最小化.png"
                 state: "normal";
-                nIndex: 10;
+                nIndex: 0;
             }
             Button{
                 id: max;
@@ -190,11 +190,8 @@ Rectangle{
                 state: "normal";
                 onSelcect: {
                     main_W.selectInterface(1);
-                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
-
-                    Pattern.clearCanvas();
-                    drawPattern.flag=3;
-                    drawPattern.requestPaint();
+                    patternProvider.clear();
+                    drawPattern.source="image://islamic/helloz";
                 }
             }
         }
@@ -214,7 +211,7 @@ Rectangle{
         id: vGraphic;
         color: "transparent";
         width: 170;
-        height: 400;
+        height: 450;
         anchors.left: parent.left;
         anchors.leftMargin: 162;
         anchors.top: parent.top;
@@ -224,17 +221,20 @@ Rectangle{
             id: vGraphicButton;
             width: parent.width;
             height: parent.height;
-            spacing: 40;
+            spacing: 20;
             anchors.top: parent.top;
 
             IslamicButton{
                 id: graphic1;
 
                 width: parent.width;
-                height: 190;
+                height: 210;
                 backgroundImage: islamic_star_image_name;
                 txt:"islamic star";
-                path: "F:/master/新建文件夹 (2)";
+                path: "F:/master/4.QT/reConsruct/islamic/star";
+                generateImage: "qrc:/qml/image/generate/生成islantic rosette-未选中@2x.png";
+                sHoverImage: "qrc:/qml/image/generate/生成islantic rosette-点击@2x.png";
+                sPressedImage: "qrc:/qml/image/generate/生成islantic rosette-点击@2x.png";
                 cIndex: 0;
 
             }
@@ -243,10 +243,13 @@ Rectangle{
                 id: graphic2;
 
                 width: parent.width;
-                height: 190;
+                height: 210;
                 backgroundImage: islamic_rosette_image_name;
                 txt:"islamic rosette";
-                path:"F:/master/新建文件夹 (2)";
+                path:"F:/master/4.QT/reConsruct/islamic/rosette";
+                generateImage: "qrc:/qml/image/generate/生成islantic rosette-未选中@2x.png";
+                sHoverImage: "qrc:/qml/image/generate/生成islantic rosette-点击@2x.png";
+                sPressedImage: "qrc:/qml/image/generate/生成islantic rosette-点击@2x.png";
                 cIndex: 1;
             }
         }
@@ -287,6 +290,13 @@ Rectangle{
         }
     }
 
+    /******************************PatternProvider************************************/
+
+    PatternProvider{
+        id:patternProvider;
+
+    }
+
     /**生成结果显示**********************************************************************/
     Rectangle{
         id: imageShow;
@@ -299,31 +309,57 @@ Rectangle{
         anchors.top: parent.top;
         anchors.topMargin: 236;
         clip: true;
-        Canvas{
+
+        Image{
             id: drawPattern;
             width: 3000;
             height: 2000;
             scale: 1;
             x:-1011.5;
             y:-717.5;
-            property var sx;
-            property var sy;
-            property var sn;
-            property var sg;
-            property var sk;
-            property var flag; //判断传进来的参数用来绘制什么。
-            onPaint: {
-                if(flag === 0){
-                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
-                    Pattern.aidStar(sx,sy,sn,sk);
-                }else if(flag===1){
-                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
-                    Pattern.aidRosette(sx,-sy,sn,sg,sk);
-
-                }
-            }
+            source: "";
 
         }
+
+//        Canvas{
+//            id: drawPattern;
+//            width: 3000;
+//            height: 2000;
+//            scale: 1;
+//            x:-1011.5;
+//            y:-717.5;
+//            property var sx;
+//            property var sy;
+//            property var sn;
+//            property var sg;
+//            property var sk;
+//            property var flag; //判断传进来的参数用来绘制什么。
+//            onPaint: {
+//                if(flag === 0){
+//                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+//                    Pattern.aidStar(sx,sy,sn,sk);
+//                }else if(flag===1){
+//                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
+//                    Pattern.aidRosette(sx,-sy,sn,sg,sk);
+
+//                }
+//                var ctx = drawPattern.getContext("2d");
+//                if(flag===0){
+//                    patternProvider.aidStar(sx,sy,sn,sk);
+//                    drawPattern.loadImage("image://islamic/hello");
+//                    ctx.drawImage("image://islamic/hello");
+//                }
+//                if(flag===1){
+//                    patternProvider.aidRosette(sx,-sy,sn,sg,sk);
+//                    drawPattern.loadImage("image://islamic/hello");
+//                    ctx.drawImage("image://islamic/hello");
+//                }
+
+
+
+//            }
+
+//        }
         MouseArea{
             anchors.fill: parent;
             acceptedButtons: Qt.MidButton;
@@ -372,15 +408,15 @@ Rectangle{
                 nIndex: 6;
                 state: "normal";
             }
-            ReButton{
-                id: reButton3;
-                width: 140;
-                height: 98;
-                backgroundImag: "image/pattern1/重构按钮3.png";
-                txt: "图案嵌入";
-                nIndex: -1;
-                state:"normal";
-            }
+//            ReButton{
+//                id: reButton3;
+//                width: 140;
+//                height: 98;
+//                backgroundImag: "image/pattern1/重构按钮3.png";
+//                txt: "图案嵌入";
+//                nIndex: -1;
+//                state:"normal";
+//            }
         }
     }
 
@@ -667,12 +703,9 @@ Rectangle{
             anchors.fill: parent;
 
             onTran: {
-                drawPattern.sx = sX;
-                drawPattern.flag = 0;
-                drawPattern.sy = sY;
-                drawPattern.sn = sN;
-                drawPattern.sk = sK;
-                drawPattern.requestPaint();
+                patternProvider.aidStar(sX,sY,sN,sK);
+                drawPattern.source="image://islamic/hello"+count;
+                count++;
             }
         }
 
@@ -690,13 +723,9 @@ Rectangle{
             anchors.fill: parent;
 
             onTran: {
-                drawPattern.sx = sX;
-                drawPattern.flag = 1;
-                drawPattern.sy = sY;
-                drawPattern.sn = sN;
-                drawPattern.sk = sK;
-                drawPattern.sg = sG;
-                drawPattern.requestPaint();
+                patternProvider.aidRosette(sX,-sY,sN,sG,sK);
+                drawPattern.source="image://islamic/hello"+count;
+                count++;
             }
         }
     }

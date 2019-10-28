@@ -125,7 +125,7 @@ Rectangle{
         nameFilters: ["image files(*.png)"];
         onAccepted: {
             if(fileUrl!==""){
-                drawPattern.save(fileUrl.toString().substring(8,fileUrl.length));
+                patternProvider.save(fileUrl.toString().substring(8,fileUrl.length));
 
             }
         }

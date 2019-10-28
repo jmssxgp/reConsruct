@@ -14,14 +14,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     colorimageprovider.cpp \
-    pathmodel.cpp
+    pathmodel.cpp \
+    patternprovider.cpp \
+    externalvar.cpp
 
 RESOURCES += qml.qrc \
     image.qrc
 
 
-INCLUDEPATH += C:\Qt\opencv\build\include
-LIBS += C:\Qt\opencv\install\bin\libopencv_*.dll
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -35,4 +35,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    pathmodel.h
+    pathmodel.h \
+    patternprovider.h \
+    externalvar.h

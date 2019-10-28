@@ -3,7 +3,6 @@ import QtQuick.Window 2.0
 import com.test.PathModel 1.0
 Rectangle{
     id: vButton;
-
     color: "transparent";
 
     //------------------------------------------------------------//
@@ -23,7 +22,7 @@ Rectangle{
     Image {
         id: vButtonImage;
 
-        anchors.fill: parent;
+        anchors.centerIn: parent.Center;
         source: backgroundImag;
     }
 
@@ -72,8 +71,8 @@ Rectangle{
 
         }
         onClicked: {
-            if(nIndex===10){
-
+            if(nIndex===0){
+            main_W.showMinimized();
             }
 
 

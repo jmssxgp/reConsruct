@@ -29,7 +29,7 @@ Rectangle{
 
         Text {
             id: title2
-            text: qsTr("交互几何纹样重构")
+            text: qsTr("几何纹样风格化重构软件")
             anchors.centerIn: parent;
             anchors.topMargin: 18;
 
@@ -480,7 +480,7 @@ Rectangle{
             anchors.top: parent.top;
             anchors.topMargin: 688;
             anchors.left: parent.left;
-            anchors.leftMargin: 806;
+            anchors.leftMargin: 726;
 
 
             Row{
@@ -531,38 +531,38 @@ Rectangle{
                         Painter.reduce();
                     }
                 }
-//                ToolButton{
-//                    id:tool6;
-//                    width: 36;
-//                    height: 36;
-//                    backgroundImage: "image/tool/后退-未选中.png";
-//                    pressedImage: "image/tool/后退.png";
-//                    hoverImage: "image/tool/后退.png";
-//                    state: "normal";
-//                    nIndex: 3;
-//                    onBack: {
-//                        Painter.setContext(draw.getContext("2d"), draw);
-//                        draw.requestPaint();
-//                        Painter.back_one_step();
-//                    }
+                ToolButton{
+                    id:tool6;
+                    width: 36;
+                    height: 36;
+                    backgroundImage: "image/tool/后退-未选中.png";
+                    pressedImage: "image/tool/后退.png";
+                    hoverImage: "image/tool/后退.png";
+                    state: "normal";
+                    nIndex: 3;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.back_one_step();
+                    }
 
-//                }
-//                ToolButton{
-//                    id:tool7;
-//                    width: 36;
-//                    height: 36;
-//                    backgroundImage: "image/tool/前进-未选中.png";
-//                    pressedImage: "image/tool/前进.png";
-//                    hoverImage: "image/tool/前进.png";
-//                    state: "normal";
-//                    nIndex: 3;
-//                    onBack: {
-//                        Painter.setContext(draw.getContext("2d"), draw);
-//                        draw.requestPaint();
-//                        Painter.forward_one_step();
-//                    }
+                }
+                ToolButton{
+                    id:tool7;
+                    width: 36;
+                    height: 36;
+                    backgroundImage: "image/tool/前进-未选中.png";
+                    pressedImage: "image/tool/前进.png";
+                    hoverImage: "image/tool/前进.png";
+                    state: "normal";
+                    nIndex: 3;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.forward_one_step();
+                    }
 
-//                }
+                }
                 ToolButton{
                     id:tool4;
                     width: 36;
