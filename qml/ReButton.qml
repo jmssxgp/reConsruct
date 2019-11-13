@@ -11,7 +11,7 @@ Rectangle{
     property var nIndex: 0;
     property var selcetIn: 0;
     property var sPressedImage: "";
-
+    property var count: 0;
 
     signal back(var nIndex);
     signal selcect(var selcetIn);
@@ -69,6 +69,10 @@ Rectangle{
             if(nIndex===6&&subWindow2.visible===false&&subWindow1.visible===false){
                     subWindow2.visible=true;
                 }
+            if(nIndex==7){
+                patternProvider.patternEmbedding(vMain.reX,vMain.reY,vMain.reG, vMain.reN);
+                drawPattern.source="image://islamic/hello";
+            }
 
         }
     }

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_PatternProvider_t {
-    QByteArrayData data[12];
-    char stringdata0[62];
+    QByteArrayData data[13];
+    char stringdata0[79];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,11 +42,13 @@ QT_MOC_LITERAL(7, 33, 10), // "aidRosette"
 QT_MOC_LITERAL(8, 44, 1), // "G"
 QT_MOC_LITERAL(9, 46, 5), // "clear"
 QT_MOC_LITERAL(10, 52, 4), // "save"
-QT_MOC_LITERAL(11, 57, 4) // "path"
+QT_MOC_LITERAL(11, 57, 4), // "path"
+QT_MOC_LITERAL(12, 62, 16) // "patternEmbedding"
 
     },
     "PatternProvider\0aidStar\0\0X\0Y\0N\0K\0"
-    "aidRosette\0G\0clear\0save\0path"
+    "aidRosette\0G\0clear\0save\0path\0"
+    "patternEmbedding"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +58,7 @@ static const uint qt_meta_data_PatternProvider[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,16 +66,18 @@ static const uint qt_meta_data_PatternProvider[] = {
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags
-       1,    4,   34,    2, 0x02 /* Public */,
-       7,    5,   43,    2, 0x02 /* Public */,
-       9,    0,   54,    2, 0x02 /* Public */,
-      10,    1,   55,    2, 0x02 /* Public */,
+       1,    4,   39,    2, 0x02 /* Public */,
+       7,    5,   48,    2, 0x02 /* Public */,
+       9,    0,   59,    2, 0x02 /* Public */,
+      10,    1,   60,    2, 0x02 /* Public */,
+      12,    4,   63,    2, 0x02 /* Public */,
 
  // methods: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    8,    6,
+    QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double,    3,    4,    5,    6,
+    QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double,    3,    4,    5,    8,    6,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double,    3,    4,    8,    5,
 
        0        // eod
 };
@@ -84,10 +88,11 @@ void PatternProvider::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         PatternProvider *_t = static_cast<PatternProvider *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->aidStar((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 1: _t->aidRosette((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5]))); break;
+        case 0: _t->aidStar((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4]))); break;
+        case 1: _t->aidRosette((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4])),(*reinterpret_cast< double(*)>(_a[5]))); break;
         case 2: _t->clear(); break;
         case 3: _t->save((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->patternEmbedding((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4]))); break;
         default: ;
         }
     }
@@ -118,13 +123,13 @@ int PatternProvider::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

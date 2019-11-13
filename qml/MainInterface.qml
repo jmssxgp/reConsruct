@@ -12,6 +12,10 @@ Rectangle{
     property var islamic_star_image_name: "";
     property var islamic_rosette_image_name: "";
     property int count: 0;
+    property var reX;
+    property var reY;
+    property var reG;
+    property var reN;
     Rectangle{
         id: topHurdle;
         color: "transparent";
@@ -366,7 +370,7 @@ Rectangle{
             onWheel: {
                 var scale = (wheel.angleDelta.y/120)*0.05;
                 //console.log(scale)
-                if(drawPattern.scale + scale>0.5&&drawPattern.scale + scale<1.5)
+                if(drawPattern.scale + scale>0.3&&drawPattern.scale + scale<1.5)
                     drawPattern.scale += scale;
                 console.log(drawPattern.scale)
             }
@@ -408,15 +412,15 @@ Rectangle{
                 nIndex: 6;
                 state: "normal";
             }
-//            ReButton{
-//                id: reButton3;
-//                width: 140;
-//                height: 98;
-//                backgroundImag: "image/pattern1/重构按钮3.png";
-//                txt: "图案嵌入";
-//                nIndex: -1;
-//                state:"normal";
-//            }
+            ReButton{
+                id: reButton3;
+                width: 140;
+                height: 98;
+                backgroundImag: "image/pattern1/重构按钮3.png";
+                txt: "图案嵌入";
+                nIndex: 7;
+                state:"normal";
+            }
         }
     }
 
@@ -473,11 +477,11 @@ Rectangle{
             }
             ToolButton{
                 id:tool4;
-                width: 36;
+                width: 42;
                 height: 36;
-                backgroundImage: "image/pattern1/重置-未选中.png";
-                pressedImage: "image/pattern1/重置-点击.png";
-                hoverImage: "image/pattern1/重置-点击.png";
+                backgroundImage: "image/tool/重置-未选中.png";
+                pressedImage: "image/tool/重置.png";
+                hoverImage: "image/tool/重置.png";
                 state: "normal";
                 nIndex: -4;
                 onBack: {
@@ -495,12 +499,8 @@ Rectangle{
                 state: "normal";
                 nIndex: 4;
                 onBack: {
-                    console.log("777777777777")
-                    Pattern.setContext(drawPattern.getContext("2d"), drawPattern);
-
-                    Pattern.clearCanvas();
-                    drawPattern.flag=3;
-                    drawPattern.requestPaint();
+                    patternProvider.clear();
+                    drawPattern.source="image://islamic/helloo";
                 }
             }
         }
@@ -704,6 +704,9 @@ Rectangle{
 
             onTran: {
                 patternProvider.aidStar(sX,sY,sN,sK);
+                reX = sX;
+                reY = sY;
+                reN = sN;
                 drawPattern.source="image://islamic/hello"+count;
                 count++;
             }
@@ -724,6 +727,10 @@ Rectangle{
 
             onTran: {
                 patternProvider.aidRosette(sX,-sY,sN,sG,sK);
+                reX = sX;
+                reY = -sY;
+                reG = sG;
+                reN = sN;
                 drawPattern.source="image://islamic/hello"+count;
                 count++;
             }

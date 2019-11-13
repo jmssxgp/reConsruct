@@ -91,5 +91,15 @@
         <file>qml/image/generate/生成islantic rosette-点击@2x.png</file>
         <file>qml/image/generate/生成islantic rosette-未选中@2x.png</file>
         <file>qml/image/generate/生成islantic rosette-移至icon@2x.png</file>
+        <file>qml/image/tool/右旋转.png</file>
+        <file>qml/image/tool/右旋转-未选中.png</file>
+        <file>qml/image/tool/置底.png</file>
+        <file>qml/image/tool/置底-未选中.png</file>
+        <file>qml/image/tool/置顶.png</file>
+        <file>qml/image/tool/置顶-未选中.png</file>
+        <file>qml/image/tool/重置.png</file>
+        <file>qml/image/tool/重置-未选中.png</file>
+        <file>qml/image/tool/左旋转@2x.png</file>
+        <file>qml/image/tool/左旋转-未选中@2x.png</file>
     </qresource>
 </RCC>

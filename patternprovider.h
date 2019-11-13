@@ -11,8 +11,11 @@
 #include <QColor>
 #include <QDebug>
 #include <QString>
+#include <QDir>
 #include <math.h>
+#include <cstdlib>
 #include <externalvar.h>
+
 #define PI 3.1415926
 
 class PatternProvider:public QObject
@@ -22,19 +25,22 @@ public:
     PatternProvider(QObject *parent=0);
     ~PatternProvider();
 public:
-    void drawStar(int X,int Y, int N, double w, double h);
-    void drawRosette(int X,int Y, int N, int G, int K, double w, double h);
-    Q_INVOKABLE void aidStar(int X, int Y, int N, int K);
-    Q_INVOKABLE void aidRosette(int X, int Y, int N, int G, int K);
-    void searchBorder(double x, double y, int N);
+    void drawStar(double X,double Y, double N, double w, double h);
+    void drawRosette(double X,double Y, double N, double G, double K, double w, double h);
+    Q_INVOKABLE void aidStar(double X, double Y, double N, double K);
+    Q_INVOKABLE void aidRosette(double X, double Y, double N, double G, double K);
+    void searchBorder(double x, double y, double N);
     Q_INVOKABLE void clear();
     Q_INVOKABLE void save(QString path);
+    Q_INVOKABLE void patternEmbedding(double X, double Y, double G, double N);
+    QStringList path(double r);
 private:
-    int width;
-    int height;
-    int kx;
-    int ky;
+    double width;
+    double height;
+    double kx;
+    double ky;
     QPen pen;
+    int flag;
 };
 
 #endif // PATTERNPROVIDER_H

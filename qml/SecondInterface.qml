@@ -84,10 +84,10 @@ Rectangle{
         MouseArea
         {
             anchors.right: parent.right;
-            anchors.rightMargin: 120;
+            anchors.rightMargin: 400;
 
             height: parent.height;
-            width: parent.width - 120;
+            width: parent.width - 400;
 
 
             acceptedButtons: Qt.LeftButton //只处理鼠标左键
@@ -480,7 +480,7 @@ Rectangle{
             anchors.top: parent.top;
             anchors.topMargin: 688;
             anchors.left: parent.left;
-            anchors.leftMargin: 726;
+            anchors.leftMargin: 618;
 
 
             Row{
@@ -531,6 +531,75 @@ Rectangle{
                         Painter.reduce();
                     }
                 }
+
+                ToolButton{
+                    id:tool8;
+                    width: 29;
+                    height: 37;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    backgroundImage: "image/tool/左旋转-未选中@2x.png";
+                    pressedImage: "image/tool/左旋转@2x.png";
+                    hoverImage: "image/tool/左旋转@2x.png";
+                    state: "normal";
+                    nIndex: 4;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.rotate_right();
+                    }
+                }
+
+                ToolButton{
+                    id:tool10;
+                    width: 29;
+                    height: 37;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    backgroundImage: "image/tool/右旋转-未选中.png";
+                    pressedImage: "image/tool/右旋转.png";
+                    hoverImage: "image/tool/右旋转.png";
+                    state: "normal";
+                    nIndex: 4;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.rotate_left();
+                    }
+                }
+
+                ToolButton{
+                    id:tool9;
+                    width: 27;
+                    height: 34;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    backgroundImage: "image/tool/置顶-未选中.png";
+                    pressedImage: "image/tool/置顶.png";
+                    hoverImage: "image/tool/置顶.png";
+                    state: "normal";
+                    nIndex: 4;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.image_up();
+                    }
+                }
+
+                ToolButton{
+                    id:tool11;
+                    width: 27;
+                    height: 34;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    backgroundImage: "image/tool/置底-未选中.png";
+                    pressedImage: "image/tool/置底.png";
+                    hoverImage: "image/tool/置底.png";
+                    state: "normal";
+                    nIndex: 4;
+                    onBack: {
+                        Painter.setContext(draw.getContext("2d"), draw);
+                        draw.requestPaint();
+                        Painter.image_down();
+                    }
+                }
+
                 ToolButton{
                     id:tool6;
                     width: 36;
@@ -565,11 +634,11 @@ Rectangle{
                 }
                 ToolButton{
                     id:tool4;
-                    width: 36;
+                    width: 42;
                     height: 36;
-                    backgroundImage: "image/pattern1/重置-未选中.png";
-                    pressedImage: "image/pattern1/重置-点击.png";
-                    hoverImage: "image/pattern1/重置-点击.png";
+                    backgroundImage: "image/tool/重置-未选中.png";
+                    pressedImage: "image/tool/重置.png";
+                    hoverImage: "image/tool/重置.png";
                     state: "normal";
                     nIndex: 3;
                     onBack: {
@@ -596,6 +665,7 @@ Rectangle{
                         Painter.clearCanvas();
                     }
                 }
+
             }
 
 

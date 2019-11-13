@@ -141,7 +141,7 @@ Rectangle{
             height: 17;
             minimumValue: 0
             maximumValue: 5;
-            stepSize: 1;
+            stepSize: 0.1;
             value: 0;
             onValueChanged:
             {
